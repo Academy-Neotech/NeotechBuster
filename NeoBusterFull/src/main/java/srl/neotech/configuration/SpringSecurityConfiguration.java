@@ -9,8 +9,6 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
-import srl.neotech.services.AuthenticationService;
-
 @Configuration
 @EnableWebSecurity
 public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter{
@@ -18,8 +16,6 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter{
 	@Autowired
     DataSource dataSource;
 	
-	@Autowired
-	AuthenticationService authService;
 	
 	@Override
 	public void configure(WebSecurity web) throws Exception {
