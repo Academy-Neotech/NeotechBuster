@@ -22,6 +22,9 @@ public class Movie {
 	
 	
 	
+	
+	
+	
 	public Movie(Integer movie_id, String title, Integer budget, String homepage, String overview, Double popularity,
 			Date release_date, Integer revenue, Integer runtime, String movie_status, String tagline,
 			Double vote_average, Integer vote_count) {
@@ -42,13 +45,18 @@ public class Movie {
 	}
 
 
-	public Movie(Integer movie_id, String title, Integer budget, String homepage) {
+
+
+
+	public Movie(Integer movie_id, String title) {
 		super();
-		this.movie_id = movie_id;
+		this.movie_id=movie_id;
 		this.title = title;
-		this.budget = budget;
-		this.homepage = homepage;
+		
 	}
+
+
+	
 	
 	
 	public Integer getMovie_id() {
