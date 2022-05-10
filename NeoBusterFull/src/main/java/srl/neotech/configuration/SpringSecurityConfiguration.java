@@ -29,16 +29,16 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter{
     		http  
     		.csrf().disable()
     		.authorizeRequests()
-    		.antMatchers("/").permitAll()
-    		.antMatchers("/homepage*").hasAnyRole("MANAGER", "CUSTOMER")
-    		.antMatchers("/customer/**").hasAnyRole("CUSTOMER")
-			.antMatchers("/manager/**").hasAnyRole("MANAGER")
-			.anyRequest().authenticated()
-    		.and()
-    	      .formLogin()
-    	      .loginPage("/login").permitAll()
-    	      .and()
-    	      .logout().permitAll();
- 
+    		.antMatchers("/**").permitAll();
+//    		.antMatchers("/homepage*").hasAnyRole("MANAGER", "CUSTOMER")
+//    		.antMatchers("/customer/**").hasAnyRole("CUSTOMER")
+//			.antMatchers("/manager/**").hasAnyRole("MANAGER")
+//			.anyRequest().authenticated()
+//    		.and()
+//    	      .formLogin()
+//    	      .loginPage("/login").permitAll()
+//    	      .and()
+//    	      .logout().permitAll();
+// 
     	}
 }

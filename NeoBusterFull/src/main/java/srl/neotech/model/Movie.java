@@ -17,17 +17,20 @@ public class Movie {
 	private String tagline;
 	private Double vote_average;
 	private Integer vote_count;
+	private String url_image;
 	
 	
 	
-	
+	public Movie () {
+		
+	}
 	
 	
 	
 	
 	public Movie(Integer movie_id, String title, Integer budget, String homepage, String overview, Double popularity,
 			Date release_date, Integer revenue, Integer runtime, String movie_status, String tagline,
-			Double vote_average, Integer vote_count) {
+			Double vote_average, Integer vote_count, String url_image) {
 		super();
 		this.movie_id = movie_id;
 		this.title = title;
@@ -42,6 +45,7 @@ public class Movie {
 		this.tagline = tagline;
 		this.vote_average = vote_average;
 		this.vote_count = vote_count;
+		this.url_image =url_image;
 	}
 
 
@@ -136,6 +140,12 @@ public class Movie {
 	}
 	public void setVote_count(Integer vote_count) {
 		this.vote_count = vote_count;
+	}
+	public String getUrl_image() {
+		return url_image;
+	}
+    public void setUrl_image(String url_image) {
+		this.url_image = url_image;
 	}
 	
 	

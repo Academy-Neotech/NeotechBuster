@@ -1,9 +1,5 @@
 package srl.neotech.requestresponse;
 
-import srl.neotech.model.Genre;
-import srl.neotech.model.Movie;
-import srl.neotech.model.Person;
-
 public class RequestSearchMovie {
 
 	private String movie;
