@@ -2,20 +2,17 @@ package srl.neotech.model;
 
 import java.sql.Date;
 
-public class StockMovie  extends Movie {
+public class StockMovie extends Movie {
 
 	private Integer quantity;
 	private Integer price;
-	private Integer specialOffer;
+	private Boolean specialoffer;
+	private Integer movie_id;
+	private String title;
+	private String url_image;
 	
 	
-//stock movie and latest movie are two type of section who implements the methods of movies , like person or genre, so if i check this two section, 
-//the research will be search movie from stock movie with multiple section like : search movie from stock movie with person, or stock movie with title 
-//or simply stock movie , so i guess its correct.Under i try to implements this type of think other to extends the movie class
-	
-	
-	
-	
+
 	
 	
 	
@@ -27,20 +24,63 @@ public class StockMovie  extends Movie {
 		
 	}
 
-	public StockMovie(Integer genre_id,String genre_name) {
-		super (genre_id, genre_name);
-		}
 	
 	
-	public StockMovie(Integer movie_id, String title, String url_image, Integer price,Integer specialOffer,Integer quantity,String genre_name) {
+	
+	public StockMovie(Integer movie_id, String title, String url_image, Integer price,Boolean specialoffer,Integer quantity) {
 		super();
+		this.movie_id=movie_id;
+		this.title=title;
+		this.url_image=url_image;
 		this.price=price;
 		this.quantity=quantity;
-		this.specialOffer=specialOffer;
+		this.specialoffer=specialoffer;
 	}
 	
 	
 	
+
+
+	public Integer getMovie_id() {
+		return movie_id;
+	}
+
+
+
+
+	public void setMovie_id(Integer movie_id) {
+		this.movie_id = movie_id;
+	}
+
+
+
+
+	public String getTitle() {
+		return title;
+	}
+
+
+
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+
+
+
+	public String getUrl_image() {
+		return url_image;
+	}
+
+
+
+
+	public void setUrl_image(String url_image) {
+		this.url_image = url_image;
+	}
+
+
 
 
 	public Integer getQuantity() {
@@ -67,17 +107,18 @@ public class StockMovie  extends Movie {
 
 
 
-	public Integer getSpecialOffer() {
-		return specialOffer;
+
+	public Boolean getSpecialoffer() {
+		return specialoffer;
 	}
 
 
 
-	public void setSpecialOffer(Integer specialOffer) {
-		this.specialOffer = specialOffer;
+
+	public void setSpecialoffer(Boolean specialoffer) {
+		this.specialoffer = specialoffer;
 	}
 
-	
 	
 	
 	

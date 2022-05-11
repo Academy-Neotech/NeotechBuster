@@ -4,7 +4,10 @@ import java.sql.Date;
 
 public class LatestMovie  extends Movie{
 
-	private Date dataArrived;
+	private Date dateArrived;
+	private Integer movie_id;
+	private String title;
+	private String url_image;
 	
 	
 	
@@ -18,24 +21,55 @@ public class LatestMovie  extends Movie{
 	}
 
 
-	public LatestMovie(Integer movie_id, String title, String url_image, Date dataArrived) {
+	public LatestMovie(Integer movie_id, String title, String url_image, Date dateArrived) {
 		super();
-		this.dataArrived=dataArrived;
+		this.movie_id=movie_id;
+		this.title=title;
+		this.url_image=url_image;
+		this.dateArrived=dateArrived;
 		
 	}
 	
 	
 
 
-	public Date getDataArrived() {
-		return dataArrived;
+	public Date getDateArrived() {
+		return dateArrived;
 	}
 
 
+	public void setDateArrived(Date dateArrived) {
+		this.dateArrived = dateArrived;
+	}
 
 
-	public void setDataArrived(Date dataArrived) {
-		this.dataArrived = dataArrived;
+	public Integer getMovie_id() {
+		return movie_id;
+	}
+
+
+	public void setMovie_id(Integer movie_id) {
+		this.movie_id = movie_id;
+	}
+
+
+	public String getTitle() {
+		return title;
+	}
+
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+
+	public String getUrl_image() {
+		return url_image;
+	}
+
+
+	public void setUrl_image(String url_image) {
+		this.url_image = url_image;
 	}
 
 	

@@ -1,12 +1,14 @@
 package srl.neotech.requestresponse;
 
+import java.sql.Date;
+
 public class RequestSearchMovie {
 
 	private String title;
 	private String person_name;
-	private String genre;
-	private String stockMovie;
-	private String latestMovie;
+	private String genre_name;
+	private Boolean specialoffer;
+	private Date dateArrived;
 	
 	
 	
@@ -23,25 +25,29 @@ public class RequestSearchMovie {
 	public void setPerson_name(String person_name) {
 		this.person_name = person_name;
 	}
-	public String getGenre() {
-		return genre;
+	
+	public String getGenre_name() {
+		return genre_name;
 	}
-	public void setGenre(String genre) {
-		this.genre = genre;
+	public void setGenre_name(String genre_name) {
+		this.genre_name = genre_name;
 	}
-	public String getStockMovie() {
-		return stockMovie;
+	
+	public Boolean getSpecialoffer() {
+		return specialoffer;
 	}
-	public void setStockMovie(String stockMovie) {
-		this.stockMovie = stockMovie;
+	public void setSpecialoffer(Boolean specialoffer) {
+		this.specialoffer = specialoffer;
 	}
-	public String getLatestMovie() {
-		return latestMovie;
+	public Date getDateArrived() {
+		return dateArrived;
 	}
-	public void setLatestMovie(String latestMovie) {
-		this.latestMovie = latestMovie;
+	public void setDateArrived(Date dateArrived) {
+		this.dateArrived = dateArrived;
 	}
-
+	
+	
+	
 	
 	
 }
