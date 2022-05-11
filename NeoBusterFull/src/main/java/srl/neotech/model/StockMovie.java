@@ -2,11 +2,20 @@ package srl.neotech.model;
 
 import java.sql.Date;
 
-public class StockMovie extends Movie{
+public class StockMovie  extends Movie {
 
 	private Integer quantity;
 	private Integer price;
 	private Integer specialOffer;
+	
+	
+//stock movie and latest movie are two type of section who implements the methods of movies , like person or genre, so if i check this two section, 
+//the research will be search movie from stock movie with multiple section like : search movie from stock movie with person, or stock movie with title 
+//or simply stock movie , so i guess its correct.Under i try to implements this type of think other to extends the movie class
+	
+	
+	
+	
 	
 	
 	
@@ -18,7 +27,12 @@ public class StockMovie extends Movie{
 		
 	}
 
-	public StockMovie(Integer movie_id, String title, String url_image, Integer price,Integer specialOffer,Integer quantity) {
+	public StockMovie(Integer genre_id,String genre_name) {
+		super (genre_id, genre_name);
+		}
+	
+	
+	public StockMovie(Integer movie_id, String title, String url_image, Integer price,Integer specialOffer,Integer quantity,String genre_name) {
 		super();
 		this.price=price;
 		this.quantity=quantity;

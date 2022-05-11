@@ -6,6 +6,9 @@ public class Genre {
 	private String genre_name;
 	
 	
+	public Genre() {
+		
+	}
 	
 	public Genre(Integer genre_id,String genre_name) {
 	super();
