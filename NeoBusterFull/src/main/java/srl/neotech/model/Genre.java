@@ -8,6 +8,7 @@ public class Genre extends Movie{
 	private String genre_name;
 	private String title;
 	private Integer movie_id;
+	private Genere genere;
 	
 	
 	public Genre(Integer movie_id, String title, Integer budget, String homepage, String overview,
@@ -69,6 +70,16 @@ public class Genre extends Movie{
 
 	public void setMovie_id(Integer movie_id) {
 		this.movie_id = movie_id;
+	}
+
+
+	public Genere getGenere() {
+		return genere;
+	}
+
+
+	public void setGenere(Genere genere) {
+		this.genere = genere;
 	}
 	
 	

@@ -1,0 +1,39 @@
+package srl.neotech.model;
+
+public enum Genere {
+
+	ADVENTURE,
+	FANTASY,
+	ANIMATION,
+	DRAMA,
+	HORROR,
+	ACTION,
+	COMEDY,
+	HISTORY,
+	WESTERN,
+	THRILLER,
+	CRIME,
+	DOCUMENTARY,
+	SCIENCE_FICTION,
+	MYSTERY,
+	MUSIC,
+	ROMANCE,
+	FAMILY,
+	WAR,
+	FOREIGN,
+	TV_MOVIE;
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}
