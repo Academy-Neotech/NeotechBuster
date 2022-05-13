@@ -1,6 +1,7 @@
 package srl.neotech.model;
 
 import java.sql.Date;
+import java.util.List;
 
 public class Movie {
 
@@ -129,6 +130,7 @@ public class Movie {
 	public void setVote_count(Integer vote_count) {
 		this.vote_count = vote_count;
 	}
+
 	
 	
 	
