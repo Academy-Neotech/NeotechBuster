@@ -1,14 +1,12 @@
 package srl.neotech.requestresponse;
 
-import java.sql.Date;
-
 public class RequestSearchMovie {
 
 	private String title;
 	private String person_name;
 	private String genre_name;
 	private Boolean specialoffer;
-	private Date dateArrived;
+	//private Date dateArrived;
 	
 	
 	
@@ -39,14 +37,14 @@ public class RequestSearchMovie {
 	public void setSpecialoffer(Boolean specialoffer) {
 		this.specialoffer = specialoffer;
 	}
-	public Date getDateArrived() {
-		return dateArrived;
-	}
-	public void setDateArrived(Date dateArrived) {
-		this.dateArrived = dateArrived;
-	}
-	
-	
+//	public Date getDateArrived() {
+//		return dateArrived;
+//	}
+//	public void setDateArrived(Date dateArrived) {
+//		this.dateArrived = dateArrived;
+//	}
+//	
+//	
 	
 	
 	

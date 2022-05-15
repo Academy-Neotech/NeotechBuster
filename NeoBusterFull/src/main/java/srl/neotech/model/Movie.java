@@ -4,21 +4,22 @@ import java.sql.Date;
 
 public class Movie {
 
-	private Integer movie_id;
-    private String title;
-	private Integer budget;
-	private String homepage;
-	private String overview;
-	private Double popularity;
-	private Date release_date;
-	private Integer revenue;
-	private Integer runtime;
-	private String movie_status;
-	private String tagline;
-	private Double vote_average;
-	private Integer vote_count;
-	private String url_image;
-	
+	protected Integer movie_id;
+    protected String title;
+    protected Integer budget;
+    protected String homepage;
+    protected String overview;
+    protected Double popularity;
+    protected Date release_date;
+    protected Integer revenue;
+    protected Integer runtime;
+    protected String movie_status;
+    protected String tagline;
+    protected Double vote_average;
+    protected Integer vote_count;
+    protected String url_image;
+    protected Integer quantity;
+    protected Integer price;
 	
 	
 	public Movie () {
@@ -52,16 +53,15 @@ public class Movie {
 
 
 
-	public Movie(Integer movie_id, String title) {
+	public Movie(Integer movie_id, String title,Integer quantity, Integer price) {
 		super();
 		this.movie_id=movie_id;
 		this.title = title;
-		
+		this.price=price;
+		this.quantity=quantity;
 	}
 
 
-	
-	
 	
 	public Integer getMovie_id() {
 		return movie_id;
@@ -146,6 +146,34 @@ public class Movie {
 	}
     public void setUrl_image(String url_image) {
 		this.url_image = url_image;
+	}
+
+
+
+
+	public Integer getQuantity() {
+		return quantity;
+	}
+
+
+
+
+	public void setQuantity(Integer quantity) {
+		this.quantity = quantity;
+	}
+
+
+
+
+	public Integer getPrice() {
+		return price;
+	}
+
+
+
+
+	public void setPrice(Integer price) {
+		this.price = price;
 	}
 	
 	
