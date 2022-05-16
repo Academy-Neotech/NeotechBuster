@@ -7,11 +7,6 @@ public class StockMovie extends Movie {
 	private Integer quantity;
 	private Integer price;
 	private Boolean specialoffer;
-//	private Integer movie_id;
-//	private String title;
-//	private String url_image;
-//	
-	
 
 	
 	
@@ -42,30 +37,6 @@ public class StockMovie extends Movie {
 	
 
 
-//	public Integer getMovie_id() {
-//		return movie_id;
-//	}
-//
-//
-//
-//
-//	public void setMovie_id(Integer movie_id) {
-//		this.movie_id = movie_id;
-//	}
-//
-//
-//
-//
-//	public String getTitle() {
-//		return title;
-//	}
-//
-//
-//
-//
-//	public void setTitle(String title) {
-//		this.title = title;
-//	}
 
 
 
@@ -85,7 +56,24 @@ public class StockMovie extends Movie {
 
 
 	public Integer getQuantity() {
-		return quantity;
+		
+		Integer i=new Integer(quantity);
+		i.getClass().getName();
+		
+		if(i>5) {
+		String.format("Buona",i).getClass().getName();	
+	    }
+		if(i<=5) {
+			String.format("Scarsa",i).getClass().getName();	
+		    }
+		if(i==0) {
+			String.format("Non Disponibile",i).getClass().getName();	
+		    }
+		if(i==1) {
+			String.format("Ultimo Pezzo",i).getClass().getName();	
+		    }
+		
+		return i;
 	}
 
 

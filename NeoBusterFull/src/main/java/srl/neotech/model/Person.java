@@ -18,11 +18,11 @@ public class Person extends Movie{
 	
 	
 	
-	public Person(Integer movie_id, String person_name,String title) {
+	public Person(String person_name) {
 		super();
-		this.movie_id= movie_id;
+		
 		this.person_name=person_name;
-		this.title=title;
+	
 		  
 	}
 

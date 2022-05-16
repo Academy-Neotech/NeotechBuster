@@ -5,10 +5,10 @@ import java.sql.Date;
 public class LatestMovie  extends Movie{
 
 	private Date dateArrived;
-	private Integer movie_id;
-	private String title;
-	private String url_image;
-	
+//  private Integer movie_id;
+//	private String title;
+//	private String url_image;
+//	
 	
 	
 	
@@ -22,7 +22,7 @@ public class LatestMovie  extends Movie{
 
 
 	public LatestMovie(Integer movie_id, String title, String url_image, Date dateArrived) {
-		super();
+		
 		this.movie_id=movie_id;
 		this.title=title;
 		this.url_image=url_image;

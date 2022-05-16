@@ -50,9 +50,6 @@ public class Movie {
 	}
 
 
-
-
-
 	public Movie(Integer movie_id, String title,Integer quantity, Integer price) {
 		super();
 		this.movie_id=movie_id;
@@ -152,13 +149,34 @@ public class Movie {
 
 
 	public Integer getQuantity() {
-		return quantity;
+		
+		Integer i=new Integer(quantity);
+		i.getClass().getName();
+		
+		if(i>5) {
+		String.format("Buona",i).getClass().getName();	
+	    }
+		if(i<=5) {
+			String.format("Scarsa",i).getClass().getName();	
+		    }
+		if(i==0) {
+			String.format("Non Disponibile",i).getClass().getName();	
+		    }
+		if(i==1) {
+			String.format("Ultimo Pezzo",i).getClass().getName();	
+		    }
+		
+		return i;
 	}
 
 
 
 
 	public void setQuantity(Integer quantity) {
+		
+		
+		
+		
 		this.quantity = quantity;
 	}
 

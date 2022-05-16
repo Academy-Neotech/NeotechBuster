@@ -28,7 +28,12 @@ public class Genre extends Movie{
 	this.movie_id=movie_id;
 	}
 
-
+	
+	
+	
+	
+	
+	
 
 	public Integer getGenre_id() {
 		return genre_id;
@@ -81,9 +86,8 @@ public class Genre extends Movie{
 	public void setGenere(Genere genere) {
 		this.genere = genere;
 	}
-	
-	
-	
+
+
 	
 	
 }
