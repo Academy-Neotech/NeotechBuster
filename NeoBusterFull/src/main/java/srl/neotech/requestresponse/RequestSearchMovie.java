@@ -6,7 +6,7 @@ public class RequestSearchMovie {
 	private String person_name;
 	private String genre_name;
 	private Boolean specialoffer;
-	//private Date dateArrived;
+	private Integer page;
 	
 	
 	
@@ -37,15 +37,14 @@ public class RequestSearchMovie {
 	public void setSpecialoffer(Boolean specialoffer) {
 		this.specialoffer = specialoffer;
 	}
-//	public Date getDateArrived() {
-//		return dateArrived;
-//	}
-//	public void setDateArrived(Date dateArrived) {
-//		this.dateArrived = dateArrived;
-//	}
-//	
-//	
-	
-	
+	public Integer getPage() {
+		
+		return page;
+	}
+	public void setPage(Integer page) {
+		
+		this.page = page;
+	}
+
 	
 }
