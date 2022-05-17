@@ -4,20 +4,24 @@ import java.sql.Date;
 
 public class Movie {
 
-	private Integer movie_id;
-    private String title;
-	private Integer budget;
-	private String homepage;
-	private String overview;
-	private Double popularity;
-	private Date release_date;
-	private Integer revenue;
-	private Integer runtime;
-	private String movie_status;
-	private String tagline;
-	private Double vote_average;
-	private Integer vote_count;
-	private String url_image;
+	protected Integer movie_id;
+	protected String title;
+    protected Integer budget;
+	protected String homepage;
+	protected String overview;
+	protected Double popularity;
+	protected Date release_date;
+	protected Integer revenue;
+	protected Integer runtime;
+	protected String movie_status;
+	protected String tagline;
+	protected Double vote_average;
+	protected Integer vote_count;
+	protected String url_image;
+	protected Integer quantity;
+	protected Integer price;
+	protected Date arrived_date;
+	protected Boolean specialoffer;
 	
 	
 	public Movie() {
@@ -54,11 +58,73 @@ public class Movie {
 		this.vote_average = vote_average;
 		this.vote_count = vote_count;
 		this.url_image = url_image;
-		
+	
 	}
 
 	
+	public Movie(Integer movie_id, String title, String url_image,Integer price, Integer quantity, Boolean specialOffer) {
+		
+	super ();
 	
+	this.movie_id= movie_id;
+	this.title= title;
+	this.url_image= url_image;
+	this.quantity= quantity;
+	this.price= price;
+	this.specialoffer= specialOffer;
+	
+			
+	}
+	
+	public Movie(Integer movie_id, String title, String url_image,Integer price, Integer quantity,Date arrival_date) {
+		
+		super ();
+		
+		this.movie_id= movie_id;
+		this.title= title;
+		this.url_image= url_image;
+		this.quantity= quantity;
+		this.price= price;
+		this.arrived_date= arrival_date;
+				
+		}
+	
+	public Integer getQuantity() {
+		return quantity;
+	}
+
+
+
+	public void setQuantity(Integer quantity) {
+		this.quantity = quantity;
+	}
+
+
+
+	public Integer getPrice() {
+		return price;
+	}
+
+
+
+	public void setPrice(Integer price) {
+		this.price = price;
+	}
+
+
+
+	public Date getArrived_date() {
+		return arrived_date;
+	}
+
+
+
+	public void setArrived_date(Date arrived_date) {
+		this.arrived_date = arrived_date;
+	}
+
+
+
 	public Integer getMovie_id() {
 		return movie_id;
 	}

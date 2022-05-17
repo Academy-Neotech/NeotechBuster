@@ -43,7 +43,7 @@ public class LatestMovie extends Movie{
 	
 	}
 	public LatestMovie(Integer movie_id, String title, String url_image,Integer price, Integer quantity, Date arrival_date) {
-		super();
+	
 		this.price=price;
 		this.quantity= quantity;
 		this.arrival_date= arrival_date;
