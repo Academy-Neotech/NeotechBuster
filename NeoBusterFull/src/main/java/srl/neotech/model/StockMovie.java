@@ -34,13 +34,6 @@ public class StockMovie extends Movie {
 	}
 	
 	
-	
-
-
-
-
-
-
 	public String getUrl_image() {
 		return url_image;
 	}
