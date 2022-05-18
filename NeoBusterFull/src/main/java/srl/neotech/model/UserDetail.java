@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 public class UserDetail implements UserDetails{
 
 	private String username;
+
 	private String password;
 	private boolean isEnabled;
 	
@@ -17,6 +18,8 @@ public class UserDetail implements UserDetails{
 	public void setUsername(String username) {
 		this.username = username;
 	}
+
+
 	public String getPassword() {
 		return password;
 	}
