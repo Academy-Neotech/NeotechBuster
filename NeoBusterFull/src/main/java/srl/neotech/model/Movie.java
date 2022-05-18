@@ -4,27 +4,34 @@ import java.sql.Date;
 
 public class Movie {
 
-	private Integer movie_id;
-    private String title;
-	private Integer budget;
-	private String homepage;
-	private String overview;
-	private Double popularity;
-	private Date release_date;
-	private Integer revenue;
-	private Integer runtime;
-	private String movie_status;
-	private String tagline;
-	private Double vote_average;
-	private Integer vote_count;
+	protected Integer movie_id;
+    protected String title;
+    protected Integer budget;
+    protected String homepage;
+    protected String overview;
+    protected Double popularity;
+    protected Date release_date;
+    protected Integer revenue;
+    protected Integer runtime;
+    protected String movie_status;
+    protected String tagline;
+    protected Double vote_average;
+    protected Integer vote_count;
+    protected String url_image;
+    protected Integer quantity;
+    protected Integer price;
 	
+	
+	public Movie () {
+		
+	}
 	
 	
 	
 	
 	public Movie(Integer movie_id, String title, Integer budget, String homepage, String overview, Double popularity,
 			Date release_date, Integer revenue, Integer runtime, String movie_status, String tagline,
-			Double vote_average, Integer vote_count) {
+			Double vote_average, Integer vote_count, String url_image) {
 		super();
 		this.movie_id = movie_id;
 		this.title = title;
@@ -39,17 +46,19 @@ public class Movie {
 		this.tagline = tagline;
 		this.vote_average = vote_average;
 		this.vote_count = vote_count;
+		this.url_image =url_image;
 	}
 
 
-	public Movie(Integer movie_id, String title, Integer budget, String homepage) {
+	public Movie(Integer movie_id, String title,Integer quantity, Integer price) {
 		super();
-		this.movie_id = movie_id;
+		this.movie_id=movie_id;
 		this.title = title;
-		this.budget = budget;
-		this.homepage = homepage;
+		this.price=price;
+		this.quantity=quantity;
 	}
-	
+
+
 	
 	public Integer getMovie_id() {
 		return movie_id;
@@ -128,6 +137,61 @@ public class Movie {
 	}
 	public void setVote_count(Integer vote_count) {
 		this.vote_count = vote_count;
+	}
+	public String getUrl_image() {
+		return url_image;
+	}
+    public void setUrl_image(String url_image) {
+		this.url_image = url_image;
+	}
+
+
+
+
+	public Integer getQuantity() {
+		
+		Integer i=new Integer(quantity);
+		i.getClass().getName();
+		
+		if(i>5) {
+		String.format("Buona",i).getClass().getName();	
+	    }
+		if(i<=5) {
+			String.format("Scarsa",i).getClass().getName();	
+		    }
+		if(i==0) {
+			String.format("Non Disponibile",i).getClass().getName();	
+		    }
+		if(i==1) {
+			String.format("Ultimo Pezzo",i).getClass().getName();	
+		    }
+		
+		return i;
+	}
+
+
+
+
+	public void setQuantity(Integer quantity) {
+		
+		
+		
+		
+		this.quantity = quantity;
+	}
+
+
+
+
+	public Integer getPrice() {
+		return price;
+	}
+
+
+
+
+	public void setPrice(Integer price) {
+		this.price = price;
 	}
 	
 	
