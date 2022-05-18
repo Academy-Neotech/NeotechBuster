@@ -11,9 +11,9 @@
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="static/plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="../static/plugins/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="static/css/adminlte.min.css">
+  <link rel="stylesheet" href="../static/css/adminlte.min.css">
 </head>
 <body class="hold-transition sidebar-mini">
 <!-- Site wrapper -->
@@ -568,16 +568,16 @@
 
 
 
-<script src="static/plugins/jquery/jquery.min.js"></script>
+<script src="../static/plugins/jquery/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/xcash/bootstrap-autocomplete@master/dist/latest/bootstrap-autocomplete.min.js"></script>
-<script src="static/js/neotech_ajax.js"></script>
-<script src="static/js/search_movies.js"></script>
+<script src="../static/js/neotech_ajax.js"></script>
+<script src="../static/js/search_movies.js"></script>
 <!-- jQuery -->
 
 <!-- Bootstrap 4 -->
-<script src="static/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../static/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
-<script src="static/js/adminlte.min.js"></script>
+<script src="../static/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 
 

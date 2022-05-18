@@ -15,12 +15,12 @@ public class SearchMovieViewcontroller {
     SearchMovieServices searchMovieServices;
 	
 	
-	@RequestMapping(value = "/search_Movie",method = RequestMethod.GET)
+	@RequestMapping(value = "/customer/search_Movie",method = RequestMethod.GET)
 	public String searchMovieView( Model model) {
 		
    
 
-		return "search_Movie";
+		return "customer/search_Movie";
 	}
 	  
 	

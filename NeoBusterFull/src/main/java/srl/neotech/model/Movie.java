@@ -30,14 +30,7 @@ public class Movie {
 	
 	
 	
-	public String getUrl_image() {
-		return url_image;
-	}
 
-
-	public void setUrl_image(String url_image) {
-		this.url_image = url_image;
-	}
 
 
 	public Movie(Integer movie_id, String title, Integer budget, String homepage, String overview, Double popularity,
@@ -63,20 +56,16 @@ public class Movie {
 
 	
 	public Movie(Integer movie_id, String title, String url_image,Integer price, Integer quantity, Boolean specialOffer) {
-		
-	super ();
-	
 	this.movie_id= movie_id;
 	this.title= title;
 	this.url_image= url_image;
 	this.quantity= quantity;
 	this.price= price;
 	this.specialoffer= specialOffer;
-	
+	}
 			
 
 	public Movie(Integer movie_id, String title,Integer quantity, Integer price) {
-		super();
 		this.movie_id=movie_id;
 		this.title = title;
 		this.price=price;
@@ -86,9 +75,6 @@ public class Movie {
 
 	
 	public Movie(Integer movie_id, String title, String url_image,Integer price, Integer quantity,Date arrival_date) {
-		
-		super ();
-		
 		this.movie_id= movie_id;
 		this.title= title;
 		this.url_image= url_image;
@@ -98,28 +84,6 @@ public class Movie {
 				
 		}
 	
-	public Integer getQuantity() {
-		return quantity;
-	}
-
-
-
-	public void setQuantity(Integer quantity) {
-		this.quantity = quantity;
-	}
-
-
-
-	public Integer getPrice() {
-		return price;
-	}
-
-
-
-	public void setPrice(Integer price) {
-		this.price = price;
-	}
-
 
 
 	public Date getArrived_date() {

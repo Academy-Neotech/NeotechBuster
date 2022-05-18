@@ -6,8 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import srl.neotech.dao.repository.SearchMovieRepository;
 import srl.neotech.model.Movie;
+import srl.neotech.repository.SearchMovieRepository;
 
 @Component
 public class SearchMovieDAO {

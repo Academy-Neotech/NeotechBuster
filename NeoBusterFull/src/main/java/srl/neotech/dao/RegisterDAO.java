@@ -3,8 +3,8 @@ package srl.neotech.dao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import srl.neotech.dao.repository.RegisterRepository;
 import srl.neotech.model.UserDetail;
+import srl.neotech.repository.RegisterRepository;
 
 @Component
 

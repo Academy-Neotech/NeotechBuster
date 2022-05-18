@@ -1,4 +1,4 @@
-package srl.neotech.dao.repository;
+package srl.neotech.repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;

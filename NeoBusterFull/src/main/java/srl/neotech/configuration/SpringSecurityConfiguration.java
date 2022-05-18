@@ -1,9 +1,7 @@
+package srl.neotech.configuration;
 
 import javax.sql.DataSource;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -17,14 +15,14 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 @SuppressWarnings("deprecation")
 @Configuration
 @EnableWebSecurity
-public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter{ @Autowired
-DataSource dataSource;
+public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter{ 
+	
 
 	@Autowired
     DataSource dataSource;
 
 	private static final String usersQuery = "select username, password, 1 FROM users where username = ? and enabled=1";
-	private static final String rolesQuery = "select u.username, a.authority_desc FROM users u, authority a where u.authority_id=a.authority_id and u.username = ?";
+	private static final String rolesQuery = "select a.username, a.authority FROM authorities a where a.username = ?";
 	
 	@Bean
 	public static NoOpPasswordEncoder passwordEncoder() {
@@ -71,6 +69,7 @@ DataSource dataSource;
     		.authorizeRequests()
     		.antMatchers("/static/**").permitAll()
     		.antMatchers("/login").permitAll()
+    		.antMatchers("/api/**").permitAll()
     		.antMatchers("/blank").permitAll()
     		.antMatchers("/customer/**").hasAnyRole("CUSTOMER")
 			.antMatchers("/manager/**").hasAnyRole("MANAGER")
@@ -92,22 +91,4 @@ DataSource dataSource;
         }
 }
 
-@Override
-protected void configure(HttpSecurity http) throws Exception {
-http
-.csrf().disable()
-.authorizeRequests()
-.antMatchers("/**").permitAll();
-// .antMatchers("/homepage*").hasAnyRole("MANAGER", "CUSTOMER")
-// .antMatchers("/customer/**").hasAnyRole("CUSTOMER")
-// .antMatchers("/manager/**").hasAnyRole("MANAGER")
-// .anyRequest().authenticated()
-// .and()
-// .formLogin()
-// .loginPage("/login").permitAll()
-// .and()
-// .logout().permitAll();
-//
-}
-}
 

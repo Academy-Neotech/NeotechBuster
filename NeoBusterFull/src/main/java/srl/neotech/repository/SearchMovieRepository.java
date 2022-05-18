@@ -1,4 +1,4 @@
-package srl.neotech.dao.repository;
+package srl.neotech.repository;
 
 import java.sql.Date;
 import java.util.List;

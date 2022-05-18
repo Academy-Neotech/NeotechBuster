@@ -3,7 +3,7 @@
 $(document).ready(function () {
 $('#titolo').autoComplete({
 	resolverSettings: {
-		url: 'api/autocompleteForMovies'
+		url: '../api/autocompleteForMovies'
 		}
 		});
 
@@ -11,13 +11,13 @@ $('#titolo').autoComplete({
 
 $('#attore').autoComplete({
 	resolverSettings: {
-		url: 'api/autocompleteForActor'
+		url: '../api/autocompleteForActor'
 		}
 		});
 
  $('#attore').autoComplete();
 
-var generi=fire_ajax_pathvar("api/genereForFront");
+var generi=fire_ajax_pathvar("../api/genereForFront");
  $.each(generi.responseJSON, function (i, genere) {
     $('#genere').append($('<option>', { 
         value: genere.genre_id,
@@ -36,7 +36,7 @@ var generi=fire_ajax_pathvar("api/genereForFront");
      };
     
      
-       var response_object=fire_ajax_post("api/searchMovieBy",requestData);
+       var response_object=fire_ajax_post("../api/searchMovieBy",requestData);
       
  if(response_object.code=="KO") alert(response_object.descr);
 
