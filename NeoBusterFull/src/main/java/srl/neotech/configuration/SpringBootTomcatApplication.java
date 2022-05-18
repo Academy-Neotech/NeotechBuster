@@ -1,23 +1,31 @@
 package srl.neotech.configuration;
 
+
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
+
+
 @SpringBootApplication(scanBasePackages = "srl.neotech")
-public class SpringBootTomcatApplication  extends SpringBootServletInitializer{
-	  
-	public static void main(String[] args) {
+public class SpringBootTomcatApplication extends SpringBootServletInitializer{
 
-        SpringApplication.run(SpringBootTomcatApplication.class, args);
- 
-    }
+public static void main(String[] args) {
 
-    @Override
-    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-    	
-    	
-        return builder.sources(SpringBootTomcatApplication.class);
-    }
+
+
+SpringApplication.run(SpringBootTomcatApplication.class, args);
+
+}
+
+
+
+@Override
+protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+
+
+return builder.sources(SpringBootTomcatApplication.class);
+}
 }

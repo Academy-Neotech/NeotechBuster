@@ -5,30 +5,41 @@ import java.sql.Date;
 public class Movie {
 
 	protected Integer movie_id;
-    protected String title;
+	protected String title;
     protected Integer budget;
-    protected String homepage;
-    protected String overview;
-    protected Double popularity;
-    protected Date release_date;
-    protected Integer revenue;
-    protected Integer runtime;
-    protected String movie_status;
-    protected String tagline;
-    protected Double vote_average;
-    protected Integer vote_count;
-    protected String url_image;
-    protected Integer quantity;
-    protected Integer price;
+	protected String homepage;
+	protected String overview;
+	protected Double popularity;
+	protected Date release_date;
+	protected Integer revenue;
+	protected Integer runtime;
+	protected String movie_status;
+	protected String tagline;
+	protected Double vote_average;
+	protected Integer vote_count;
+	protected String url_image;
+	protected Integer quantity;
+	protected Integer price;
+	protected Date arrived_date;
+	protected Boolean specialoffer;
 	
 	
-	public Movie () {
+	public Movie() {
 		
 	}
 	
 	
 	
-	
+	public String getUrl_image() {
+		return url_image;
+	}
+
+
+	public void setUrl_image(String url_image) {
+		this.url_image = url_image;
+	}
+
+
 	public Movie(Integer movie_id, String title, Integer budget, String homepage, String overview, Double popularity,
 			Date release_date, Integer revenue, Integer runtime, String movie_status, String tagline,
 			Double vote_average, Integer vote_count, String url_image) {
@@ -46,9 +57,23 @@ public class Movie {
 		this.tagline = tagline;
 		this.vote_average = vote_average;
 		this.vote_count = vote_count;
-		this.url_image =url_image;
+		this.url_image = url_image;
+	
 	}
 
+	
+	public Movie(Integer movie_id, String title, String url_image,Integer price, Integer quantity, Boolean specialOffer) {
+		
+	super ();
+	
+	this.movie_id= movie_id;
+	this.title= title;
+	this.url_image= url_image;
+	this.quantity= quantity;
+	this.price= price;
+	this.specialoffer= specialOffer;
+	
+			
 
 	public Movie(Integer movie_id, String title,Integer quantity, Integer price) {
 		super();
@@ -60,6 +85,55 @@ public class Movie {
 
 
 	
+	public Movie(Integer movie_id, String title, String url_image,Integer price, Integer quantity,Date arrival_date) {
+		
+		super ();
+		
+		this.movie_id= movie_id;
+		this.title= title;
+		this.url_image= url_image;
+		this.quantity= quantity;
+		this.price= price;
+		this.arrived_date= arrival_date;
+				
+		}
+	
+	public Integer getQuantity() {
+		return quantity;
+	}
+
+
+
+	public void setQuantity(Integer quantity) {
+		this.quantity = quantity;
+	}
+
+
+
+	public Integer getPrice() {
+		return price;
+	}
+
+
+
+	public void setPrice(Integer price) {
+		this.price = price;
+	}
+
+
+
+	public Date getArrived_date() {
+		return arrived_date;
+	}
+
+
+
+	public void setArrived_date(Date arrived_date) {
+		this.arrived_date = arrived_date;
+	}
+
+
+
 	public Integer getMovie_id() {
 		return movie_id;
 	}

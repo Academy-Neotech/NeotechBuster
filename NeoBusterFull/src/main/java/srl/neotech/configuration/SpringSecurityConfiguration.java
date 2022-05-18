@@ -1,4 +1,3 @@
-package srl.neotech.configuration;
 
 import javax.sql.DataSource;
 
@@ -18,7 +17,8 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 @SuppressWarnings("deprecation")
 @Configuration
 @EnableWebSecurity
-public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter{
+public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter{ @Autowired
+DataSource dataSource;
 
 	@Autowired
     DataSource dataSource;
@@ -91,3 +91,23 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter{
               .dataSource(dataSource);
         }
 }
+
+@Override
+protected void configure(HttpSecurity http) throws Exception {
+http
+.csrf().disable()
+.authorizeRequests()
+.antMatchers("/**").permitAll();
+// .antMatchers("/homepage*").hasAnyRole("MANAGER", "CUSTOMER")
+// .antMatchers("/customer/**").hasAnyRole("CUSTOMER")
+// .antMatchers("/manager/**").hasAnyRole("MANAGER")
+// .anyRequest().authenticated()
+// .and()
+// .formLogin()
+// .loginPage("/login").permitAll()
+// .and()
+// .logout().permitAll();
+//
+}
+}
+
