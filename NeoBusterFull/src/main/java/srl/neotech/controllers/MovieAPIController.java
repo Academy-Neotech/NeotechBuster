@@ -3,19 +3,14 @@ package srl.neotech.controllers;
 import java.sql.Date;
 import java.util.ArrayList;
 
-import org.apache.taglibs.standard.lang.jstl.BooleanLiteral;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.util.comparator.BooleanComparator;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import srl.neotech.model.Movie;
-import srl.neotech.requestresponse.SearchMovieByArrival;
 import srl.neotech.requestresponse.SearchMovieByArrivalResponse;
-import srl.neotech.requestresponse.SearchMovieByOffer;
 import srl.neotech.requestresponse.SearchMovieByOfferResponse;
 import srl.neotech.services.MovieService;
 
@@ -71,6 +66,8 @@ public class MovieAPIController {
 	
 	
 	}
+
+	
 	
 	}	
 	
