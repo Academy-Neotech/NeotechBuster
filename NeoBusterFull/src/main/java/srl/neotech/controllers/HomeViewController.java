@@ -36,7 +36,7 @@ public class HomeViewController {
 	}
   
   
-	@RequestMapping (value="/customer/home", method=RequestMethod.GET)
+	@RequestMapping (value="/home", method=RequestMethod.GET)
 	public String home(Model model) {
 		Date oggi =new Date(System.currentTimeMillis());
 		ArrayList<Movie> listaMovieUltimiArrivi=movieService.searchMovieByArrival(oggi);
@@ -44,7 +44,7 @@ public class HomeViewController {
 		
 		ArrayList<Movie> listaMovieOfferteSpeciali=movieService.searchMovieByOffer();
 		model.addAttribute("listaMoviesOfferteSpeciali", listaMovieOfferteSpeciali);
-		return "customer/home";
+		return "home";
 		
 	}
 	
