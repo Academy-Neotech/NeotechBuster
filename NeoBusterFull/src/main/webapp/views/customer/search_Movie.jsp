@@ -27,10 +27,10 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="homeNeobuster" class="nav-link">Home</a>
+        <a href="login" class="nav-link">Login</a>
       </li>
        <li class="nav-item d-none d-sm-inline-block">
-        <a href="listaVideo" class="nav-link">Lista Video</a>
+        <a href="register" class="nav-link">Register</a>
       </li>
       </ul>
    
@@ -173,7 +173,7 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="static/index3.html" class="brand-link">
-      <img src="static/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <img   class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">Neobuster</span>
     </a>
 
@@ -190,26 +190,60 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
          
+            <li class="nav-item">
+            <a href="" class="nav-link">
+             <i class="nav-icon fas fa-th"></i>
+              <p>
+               User
+                <span class="right badge badge-danger"></span>
+              </p>
+            </a>
+          </li>
+         
+         
           <li class="nav-item">
-            <a href="homeNeobuster" class="nav-link">
+            <a href="home" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-               Home Neobuster
+               Home
+                <span class="right badge badge-danger"></span>
+              </p>
+            </a>
+          </li>
+        
+          <li class="nav-item">
+            <a href="search_Movie" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+               Search/Booking Movie
+                <span class="right badge badge-danger"></span>
+              </p>
+            </a>
+          </li>
+        
+        
+              <li class="nav-item">
+            <a href="bookingList" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+               Booking List
                 <span class="right badge badge-danger"></span>
               </p>
             </a>
           </li>
          
           <li class="nav-item">
-            <a href="listaVideo" class="nav-link">
+            <a href="card" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-               Lista Video
+               Card Service
                 <span class="right badge badge-danger"></span>
               </p>
             </a>
           </li>
-          </ul>
+          
+          
+           </ul>
           </nav>
           
          
@@ -250,10 +284,7 @@
                                     <select class="select2 select2" style="width: 100%;"  id="genere" tabindex="-1" aria-hidden="true">
                                       
                                     </select>
-        <!--     <span class="select2 select2-container select2-container--default" dir="ltr" data-select2-id="7" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" 
-           aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-x72l-container"><span class="select2-selection__rendered" id="select2-x72l-container" role="textbox" aria-readonly="true"></span><span class="select2-selection__arrow" role="presentation">
-         <b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
-                                --> 
+       
                                 </div>
                                 
    
@@ -337,6 +368,7 @@
   <!-- Impaginazione foot -->
    
     <ul class="pagination justify-content-end m-0" >
+    Previus
               <li class="page-item active"><a class="page-link" href="#">1</a></li>
               <li class="page-item"><a class="page-link" href="#">2</a></li>
               <li class="page-item"><a class="page-link" href="#">3</a></li>
@@ -345,6 +377,7 @@
               <li class="page-item"><a class="page-link" href="#">6</a></li>
               <li class="page-item"><a class="page-link" href="#">7</a></li>
               <li class="page-item"><a class="page-link" href="#">8</a></li>
+              Next
             </ul>
          
  
