@@ -27,7 +27,7 @@ public class MovieRepository {
 		MapSqlParameterSource params = new MapSqlParameterSource();
 		params.addValue("Latest Date", arrival_date);
 	//Query
-			String query= "SELECT m.movie_id, m.title, m.url_image, sm.price, sm.quantity, sm.date_arrived from movie m, stockmovie sm where m.movie_id=sm.movie_id and sm.date_arrived>= CURDATE() - INTERVAL 365 DAY limit 5;";
+			String query= "SELECT m.movie_id, m.title, m.url_image, sm.price, sm.quantity, sm.date_arrived from movie m, stockmovie sm where m.movie_id=sm.movie_id and sm.date_arrived>= CURDATE() - INTERVAL 365 DAY limit 4;";
 	
 	
 			return jdbcTemplate.query(query,
@@ -43,7 +43,7 @@ public class MovieRepository {
 		MapSqlParameterSource params = new MapSqlParameterSource();
 	
 	//Query
-			String query= "SELECT m.movie_id, m.title, m.url_image, sm.price, sm.quantity, sm.specialoffer from movie m, stockmovie sm where m.movie_id=sm.movie_id and sm.specialoffer=1 limit 5;";
+			String query= "SELECT m.movie_id, m.title, m.url_image, sm.price, sm.quantity, sm.specialoffer from movie m, stockmovie sm where m.movie_id=sm.movie_id and sm.specialoffer=1 limit 4;";
 	
 	
 			return jdbcTemplate.query(query,
