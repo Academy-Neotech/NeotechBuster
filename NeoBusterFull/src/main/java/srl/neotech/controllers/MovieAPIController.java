@@ -2,20 +2,20 @@ package srl.neotech.controllers;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.List;
 
-import org.apache.taglibs.standard.lang.jstl.BooleanLiteral;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.util.comparator.BooleanComparator;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import srl.neotech.entity.MovieCrew;
 import srl.neotech.model.Movie;
-import srl.neotech.requestresponse.SearchMovieByArrival;
 import srl.neotech.requestresponse.SearchMovieByArrivalResponse;
-import srl.neotech.requestresponse.SearchMovieByOffer;
 import srl.neotech.requestresponse.SearchMovieByOfferResponse;
 import srl.neotech.services.MovieService;
 
@@ -68,10 +68,45 @@ public class MovieAPIController {
 		}
 		
 		return response;
-	
-	
 	}
 	
+	
+	@ResponseBody 
+	@GetMapping (value = "/api/getMovieByBudget/{budget}", produces=MediaType.APPLICATION_JSON_VALUE) 
+	//--------------------------------------------------------------------Aggiungere se errore do OutpuStream
+	public Movie getMovieByBudget(@PathVariable("budget") Integer budget, HttpServletResponse response) {
+
+	Movie m=null;
+	try {
+		m = movieService.getMovieByBudget(budget);
+		//Aggiungere se errore do OutpuStream
+		response.getOutputStream().write(null, 0, response.getBufferSize());
+		
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
 	}	
 	
+    return m;
+     
+	}	
+	
+	@ResponseBody 
+	@GetMapping (value = "/api/getTest/{id}", produces=MediaType.APPLICATION_JSON_VALUE) 
+	//--------------------------------------------------------------------Aggiungere se errore do OutpuStream
+	public List<MovieCrew> getTest(@PathVariable("id") Integer budget, HttpServletResponse response) {
+		
+		try {
+			//response.getOutputStream().write(null, 0, response.getBufferSize());
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return movieService.movieTest(budget);	
+	}
+	
+	
+	
+}
 

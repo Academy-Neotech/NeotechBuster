@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import srl.neotech.dao.MovieDAO;
+import srl.neotech.entity.MovieCrew;
 import srl.neotech.model.Movie;
 
 @Service
@@ -35,8 +36,15 @@ public class MovieService {
 			listaInviataAlController.addAll(listaTornataDalDDAO);
 			
 			return listaInviataAlController;
+
+		}	
 		
+		public Movie getMovieByBudget(Integer budget){
+			return movieDAO.searchMovieByBudget(budget);
+		}
 		
-		}		
+		public List<MovieCrew> movieTest(Integer id) {
+		     	return movieDAO.moveCrewTest(id);
+		}
 		
 }
