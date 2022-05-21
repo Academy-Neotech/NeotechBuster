@@ -1,12 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
- 
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> 
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | NEOBUSTER</title>
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <title>Neobuster | NEOBUSTER</title>
+ 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 
   <!-- Google Font: Source Sans Pro -->
@@ -18,7 +17,6 @@
 </head>
 <body class="hold-transition sidebar-mini">
 <!-- Site wrapper -->
-<div class="wrapper">
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
@@ -32,175 +30,242 @@
       <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contact</a>
       </li>
+      </ul>
+        <ul class="navbar-nav ml-auto">
+      <!-- Navbar Search -->
+      <li class="nav-item">
+        <a class="nav-link" data-widget="navbar-search" href="#" role="button">
+          <i class="fas fa-search"></i>
+        </a>
+        <div class="navbar-search-block">
+          <form class="form-inline">
+            <div class="input-group input-group-sm">
+              <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+              <div class="input-group-append">
+                <button class="btn btn-navbar" type="submit">
+                  <i class="fas fa-search"></i>
+                </button>
+                <button class="btn btn-navbar" type="button" data-widget="navbar-search">
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </li>      
+          <!-- Messages Dropdown Menu -->
+      <li class="nav-item dropdown">
+        <a class="nav-link" data-toggle="dropdown" href="#">
+          <i class="far fa-comments"></i>
+          <span class="badge badge-danger navbar-badge">3</span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+          <a href="#" class="dropdown-item">
+            <!-- Message Start -->
+            <div class="media">
+              <img src="static/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+              <div class="media-body">
+                <h3 class="dropdown-item-title">
+                  Brad Diesel
+                  <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
+                </h3>
+                <p class="text-sm">Call me whenever you can...</p>
+                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+              </div>
+            </div>
+           
+            <!-- Message End -->
+          </a>
+<div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <!-- Message Start -->
+            <div class="media">
+              <img src="static/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+              <div class="media-body">
+                <h3 class="dropdown-item-title">
+                  John Pierce
+                  <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
+                </h3>
+                <p class="text-sm">I got your message bro</p>
+                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+              </div>
+            </div>
+            <!-- Message End -->
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <!-- Message Start -->
+            <div class="media">
+              <img src="static/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+              <div class="media-body">
+                <h3 class="dropdown-item-title">
+                  Nora Silvester
+                  <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
+                </h3>
+                <p class="text-sm">The subject goes here</p>
+                <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+              </div>
+            </div>
+            <!-- Message End -->
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
+        </div>
+      </li>
+      <!-- Notifications Dropdown Menu -->
+      <li class="nav-item dropdown">
+        <a class="nav-link" data-toggle="dropdown" href="#">
+          <i class="far fa-bell"></i>
+          <span class="badge badge-warning navbar-badge">15</span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+          <span class="dropdown-item dropdown-header">15 Notifications</span>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <i class="fas fa-envelope mr-2"></i> 4 new messages
+            <span class="float-right text-muted text-sm">3 mins</span>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <i class="fas fa-users mr-2"></i> 8 friend requests
+            <span class="float-right text-muted text-sm">12 hours</span>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <i class="fas fa-file mr-2"></i> 3 new reports
+            <span class="float-right text-muted text-sm">2 days</span>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+          <i class="fas fa-expand-arrows-alt"></i>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
+          <i class="fas fa-th-large"></i>
+        </a>
+      </li>
     </ul>
-
+    </div>
   </nav>
- 
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
- 
-        <!-- Sidebar Menu -->
+    <!-- Brand Logo -->
+    <a href="static/index3.html" class="brand-link">
+      <img   class="brand-image img-circle elevation-3" style="opacity: .8">
+      <span class="brand-text font-weight-light">Neobuster</span>
+    </a>
+     <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user (optional) -->    
+      <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item">
-            <a href="#" class="nav-link">         
+         <li class="nav-item">
+            <a href="customer/register" class="nav-link">
+             <i class="nav-icon fas fa-th"></i>
               <p>
-                HOME 
-              </p>
-            </a>
-           
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-                 <p>
-                Login 
+               Register
+                <span class="right badge badge-danger"></span>
               </p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
-                 <p>
-                Register 
+            <a href="customer/search_Movie" class="nav-link">
+             <i class="nav-icon fas fa-th"></i>
+              <p>
+               Ricerca Film
+                <span class="right badge badge-danger"></span>
               </p>
             </a>
           </li>
-            
           <li class="nav-item">
-            <a href="#" class="nav-link">
-                 <p>
-                Ricerca Film
+            <a href="customer/search_Movie" class="nav-link">
+             <i class="nav-icon fas fa-th"></i>
+              <p>
+               Prenota Film
+                <span class="right badge badge-danger"></span>
               </p>
             </a>
           </li>
          <li class="nav-item">
-            <a href="#" class="nav-link">
-                 <p>
-                Prenota Film
+            <a href="customer/bookingList" class="nav-link">
+             <i class="nav-icon fas fa-th"></i>
+              <p>
+               Lista Prenotazioni
+                <span class="right badge badge-danger"></span>
               </p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
-                 <p>
-                Lista Prenotazioni
+            <a href="customer/card" class="nav-link">
+             <i class="nav-icon fas fa-th"></i>
+              <p>
+               Gestione Carta
+                <span class="right badge badge-danger"></span>
               </p>
             </a>
           </li>
-         <li class="nav-item">
-            <a href="#" class="nav-link">
-                 <p>
-                Gestione Carta
-              </p>
-            </a>
-          </li>
-      </nav>
+          </ul>    
+              </nav>
       <!-- /.sidebar-menu -->
     </div>
+    
     <!-- /.sidebar -->
   </aside>
-     
-     
       <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1>NEOBUSTER</h1>
-         <h4 class="text-right">Latest Movies</h4>
+          <div class="col-sm-12">
+            <h1>Neobuster</h1>
+         <h4 class="text-center">Latest Movies</h4>
 
         <section class="content">
     
-    <div class ="row">
-    <c:forEach items="${listaMovieUltimiArrivi}" var="movie"> 
-    <div class ="col-md-40">	
-    <div class="card card-widget widget-user">
-              <!-- Add the bg color to the header using any of the bg-* classes -->
-              <div class="widget-user-header bg-info">
-                <h5 class="widget-user-desc"><c:out value ="${movie.title}"/></h5>
-                  <span class="description-text">Titolo</span>
-              </div>
-              <div class="widget-user-image">
-                <img class="img-circle elevation-2" src="${movie.url_image}" style= "height:90px" alt="User Avatar">
-              </div>
-              <div class="card-footer">
-                <div class="row">
-                  <div class="col-sm-40 border-right">
-                    <div class="description-block">
-                      <h5 class="description-header"><c:out value ="${movie.price}"/></h5>
-                      <span class="description-text">Prezzo</span>
-                    </div>
-                    <!-- /.description-block -->
-                  </div>
-              
-                  </div>
-                  <!-- /.col -->
-                  <div class="col-sm-20">
-                    <div class="description-block">
-                      <h5 class="description-header"><c:out value ="${movie.quantity}"/></h5>
-                      <span class="description-text">Disponibilita'</span>
-                    </div>
-                     <a class="btn btn-primary" href="/prenota_film" role="button">Booking</a>
-                    <!-- /.description-block -->
-                  </div>
-                  <!-- /.col -->
-                </div>
-    		 </div>
-            </div>
-   		
-    </c:forEach>
-   
+    <div id="contenitore_latestmovies" class ="row">
+
+  
     </div>
-    </section>
-		
-         <h4 class="text-right">Special Offers</h4>
-         <section class="content">
-    <div class ="row">
-    <c:forEach items="${listaMovieOfferteSpeciali}" var="movie">  
-    <div class ="col-md-40">	
-   
-    <div class="card card-widget widget-user">
-              <!-- Add the bg color to the header using any of the bg-* classes -->
-              <div class="widget-user-header bg-info">
-                <h5 class="widget-user-desc"><c:out value ="${movie.title}"/></h5>
-                  <span class="description-text">Titolo</span>
-              </div>
-              <div class="widget-user-image">
-                <img class="img-circle elevation-2" src="${movie.url_image}" style= "height:90px" alt="User Avatar">
-              </div>
-              <div class="card-footer">
-                <div class="row">
-                  <div class="col-sm-40 border-right">
-                    <div class="description-block">
-                      <h5 class="description-header"><c:out value ="${movie.price}"/></h5>
-                      <span class="description-text">Prezzo</span>
-                    </div>
-                    <!-- /.description-block -->
-                  </div>
-              
-                  </div>
-                  <!-- /.col -->
-                  <div class="col-sm-20">
-                    <div class="description-block">
-                      <h5 class="description-header"><c:out value ="${movie.quantity}"/></h5>
-                      <span class="description-text">Disponibilita'</span>
-                    </div>
-                     <a class="btn btn-primary" href="/prenota_film" role="button">Booking</a>
-                    <!-- /.description-block -->
-                  </div>
-                  <!-- /.col -->
-                </div>
-    		 </div>
-            </div>
    		
-    </c:forEach>
+   
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-12">
+         
+         <h4 class="text-center">Special Offers</h4>
+
+        <section class="content">
     
+    <div id="contenitore_offertespeciali" class ="row">
+
+  
     </div>
+   
+    
+     </div>
     </section>
     
-    <!-- Main content -->
-   
+      <footer class="main-footer">
+    <div class="float-right d-none d-sm-block">
+      <b>Version</b> 3.2.0
+    </div>
+    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+  </footer>
     
+    
+    <script src="static/plugins/jquery/jquery.min.js"></script>
+    <script src="static/js/neotech_ajax.js"></script>
+      
+    <script src="static/js/home.js"></script>
+    </body>
+</html>
