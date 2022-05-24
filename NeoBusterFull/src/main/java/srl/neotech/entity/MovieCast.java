@@ -1,21 +1,30 @@
 package srl.neotech.entity;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
-@Entity(name = "Movie_CastEntity")
+@Entity
 @Table(name = "movie_cast")
-public class MovieCast implements Serializable {
-    private static final long serialVersionUID = -180517458855928461L;
+public class MovieCast {
+    @EmbeddedId
     private MovieCastId id;
 
+    @MapsId("movieId")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "movie_id", nullable = false)
+    private Movie movie;
+
+    @MapsId("personId")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "person_id", nullable = false)
+    private Person person;
+
+    @Column(name = "character_name", length = 400)
     private String characterName;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "gender_id")
     private Gender gender;
 
-    private Integer mcPk;
-
-    @EmbeddedId
     public MovieCastId getId() {
         return id;
     }
@@ -24,7 +33,22 @@ public class MovieCast implements Serializable {
         this.id = id;
     }
 
-    @Column(name = "character_name", length = 400)
+    public Movie getMovie() {
+        return movie;
+    }
+
+    public void setMovie(Movie movie) {
+        this.movie = movie;
+    }
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
+    }
+
     public String getCharacterName() {
         return characterName;
     }
@@ -33,23 +57,12 @@ public class MovieCast implements Serializable {
         this.characterName = characterName;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "gender_id")
     public Gender getGender() {
         return gender;
     }
 
     public void setGender(Gender gender) {
         this.gender = gender;
-    }
-
-    @Column(name = "mc_pk")
-    public Integer getMcPk() {
-        return mcPk;
-    }
-
-    public void setMcPk(Integer mcPk) {
-        this.mcPk = mcPk;
     }
 
 }

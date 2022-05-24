@@ -1,21 +1,29 @@
 package srl.neotech.entity;
 
 import javax.persistence.*;
-import java.io.Serializable;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
-@Entity(name = "CountryEntity")
+@Entity
 @Table(name = "country")
-public class Country implements Serializable {
-    private static final long serialVersionUID = -5178430828292014742L;
-    private Integer id;
-
-    private String countryIsoCode;
-
-    private String countryName;
-
+public class Country {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "country_id", nullable = false)
+    private Integer id;
+
+    @Column(name = "country_iso_code", length = 10)
+    private String countryIsoCode;
+
+    @Column(name = "country_name", length = 200)
+    private String countryName;
+
+    @ManyToMany
+    @JoinTable(name = "production_country",
+            joinColumns = @JoinColumn(name = "country_id"),
+            inverseJoinColumns = @JoinColumn(name = "movie_id"))
+    private Set<Movie> movies = new LinkedHashSet<>();
+
     public Integer getId() {
         return id;
     }
@@ -24,7 +32,6 @@ public class Country implements Serializable {
         this.id = id;
     }
 
-    @Column(name = "country_iso_code", length = 10)
     public String getCountryIsoCode() {
         return countryIsoCode;
     }
@@ -33,13 +40,20 @@ public class Country implements Serializable {
         this.countryIsoCode = countryIsoCode;
     }
 
-    @Column(name = "country_name", length = 200)
     public String getCountryName() {
         return countryName;
     }
 
     public void setCountryName(String countryName) {
         this.countryName = countryName;
+    }
+
+    public Set<Movie> getMovies() {
+        return movies;
+    }
+
+    public void setMovies(Set<Movie> movies) {
+        this.movies = movies;
     }
 
 }

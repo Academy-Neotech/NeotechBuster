@@ -1,21 +1,26 @@
 package srl.neotech.entity;
 
 import javax.persistence.*;
-import java.io.Serializable;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
-@Entity(name = "LanguageEntity")
+@Entity
 @Table(name = "language")
-public class Language implements Serializable {
-    private static final long serialVersionUID = -4865279539515557253L;
-    private Integer id;
-
-    private String languageCode;
-
-    private String languageName;
-
+public class Language {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "language_id", nullable = false)
+    private Integer id;
+
+    @Column(name = "language_code", length = 10)
+    private String languageCode;
+
+    @Column(name = "language_name", length = 500)
+    private String languageName;
+
+    @OneToMany(mappedBy = "language")
+    private Set<MovieLanguage> movieLanguages = new LinkedHashSet<>();
+
     public Integer getId() {
         return id;
     }
@@ -24,7 +29,6 @@ public class Language implements Serializable {
         this.id = id;
     }
 
-    @Column(name = "language_code", length = 10)
     public String getLanguageCode() {
         return languageCode;
     }
@@ -33,13 +37,20 @@ public class Language implements Serializable {
         this.languageCode = languageCode;
     }
 
-    @Column(name = "language_name", length = 500)
     public String getLanguageName() {
         return languageName;
     }
 
     public void setLanguageName(String languageName) {
         this.languageName = languageName;
+    }
+
+    public Set<MovieLanguage> getMovieLanguages() {
+        return movieLanguages;
+    }
+
+    public void setMovieLanguages(Set<MovieLanguage> movieLanguages) {
+        this.movieLanguages = movieLanguages;
     }
 
 }

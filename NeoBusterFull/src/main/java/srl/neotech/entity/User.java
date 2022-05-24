@@ -1,25 +1,29 @@
 package srl.neotech.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import java.io.Serializable;
+import javax.persistence.*;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
-@Entity(name = "UserEntity")
+@Entity
 @Table(name = "users")
-public class User implements Serializable {
-    private static final long serialVersionUID = -1131537901532021925L;
-    private String id;
-
-    private String password;
-
-    private Boolean enabled;
-
-    private String authorityId;
-
+public class User {
     @Id
     @Column(name = "username", nullable = false, length = 45)
+    private String id;
+
+    @Column(name = "password", nullable = false, length = 45)
+    private String password;
+
+    @Column(name = "enabled")
+    private Boolean enabled;
+
+
+    @OneToMany(mappedBy = "username")
+    private Set<Bookmovie> bookmovies = new LinkedHashSet<>();
+
+    @OneToMany(mappedBy = "username")
+    private Set<Card> cards = new LinkedHashSet<>();
+
     public String getId() {
         return id;
     }
@@ -28,7 +32,6 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    @Column(name = "password", nullable = false, length = 45)
     public String getPassword() {
         return password;
     }
@@ -37,7 +40,6 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    @Column(name = "enabled")
     public Boolean getEnabled() {
         return enabled;
     }
@@ -46,13 +48,22 @@ public class User implements Serializable {
         this.enabled = enabled;
     }
 
-    @Column(name = "authority_id", length = 45)
-    public String getAuthorityId() {
-        return authorityId;
+  
+
+    public Set<Bookmovie> getBookmovies() {
+        return bookmovies;
     }
 
-    public void setAuthorityId(String authorityId) {
-        this.authorityId = authorityId;
+    public void setBookmovies(Set<Bookmovie> bookmovies) {
+        this.bookmovies = bookmovies;
+    }
+
+    public Set<Card> getCards() {
+        return cards;
+    }
+
+    public void setCards(Set<Card> cards) {
+        this.cards = cards;
     }
 
 }

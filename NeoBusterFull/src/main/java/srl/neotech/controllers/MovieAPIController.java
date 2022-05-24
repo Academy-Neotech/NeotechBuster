@@ -10,11 +10,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import srl.neotech.entity.MovieCrew;
+import srl.neotech.model.Attore;
 import srl.neotech.model.Movie;
+import srl.neotech.requestresponse.ResponseBase;
 import srl.neotech.requestresponse.SearchMovieByArrivalResponse;
 import srl.neotech.requestresponse.SearchMovieByOfferResponse;
 import srl.neotech.services.MovieService;
@@ -107,6 +110,23 @@ public class MovieAPIController {
 	}
 	
 	
-	
+	@ResponseBody 
+	@GetMapping (value = "/api/getAttoriFromMovieTitle", produces=MediaType.APPLICATION_JSON_VALUE) 
+	public ResponseBase getAttoriFromMovietitle(@RequestParam("titolo") String titolo) {
+		ResponseBase response=new ResponseBase();
+		
+		try {
+			List<Attore> attori=movieService.getAttoriFromMovietitle(titolo);
+			response.setCode("OK");
+			response.setSimpleData(attori);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			response.setCode("KO");
+			response.setDescr(e.getMessage());
+		}
+		
+	return response;	
+	}
 }
 

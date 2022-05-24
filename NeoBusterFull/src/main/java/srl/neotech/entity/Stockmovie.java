@@ -1,26 +1,31 @@
 package srl.neotech.entity;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
-@Entity(name = "StockmovieEntity")
+@Entity
 @Table(name = "stockmovie")
-public class Stockmovie implements Serializable {
-    private static final long serialVersionUID = 4339306067396712693L;
-    private Integer id;
-
-    private Movie movie;
-
-    private Integer quantity;
-
-    private Integer price;
-
-    private Integer specialoffer;
-
-    private String dateArrived;
-
+public class Stockmovie {
     @Id
     @Column(name = "movie_id", nullable = false)
+    private Integer id;
+
+    @MapsId
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "movie_id", nullable = false)
+    private Movie movie;
+
+    @Column(name = "quantity")
+    private Integer quantity;
+
+    @Column(name = "price")
+    private Integer price;
+
+    @Column(name = "specialoffer")
+    private Integer specialoffer;
+
+    @Column(name = "date_arrived", length = 45)
+    private String dateArrived;
+
     public Integer getId() {
         return id;
     }
@@ -29,9 +34,6 @@ public class Stockmovie implements Serializable {
         this.id = id;
     }
 
-    @MapsId
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "movie_id", nullable = false)
     public Movie getMovie() {
         return movie;
     }
@@ -40,7 +42,6 @@ public class Stockmovie implements Serializable {
         this.movie = movie;
     }
 
-    @Column(name = "quantity")
     public Integer getQuantity() {
         return quantity;
     }
@@ -49,7 +50,6 @@ public class Stockmovie implements Serializable {
         this.quantity = quantity;
     }
 
-    @Column(name = "price")
     public Integer getPrice() {
         return price;
     }
@@ -58,7 +58,6 @@ public class Stockmovie implements Serializable {
         this.price = price;
     }
 
-    @Column(name = "specialoffer")
     public Integer getSpecialoffer() {
         return specialoffer;
     }
@@ -67,7 +66,6 @@ public class Stockmovie implements Serializable {
         this.specialoffer = specialoffer;
     }
 
-    @Column(name = "date_arrived", length = 45)
     public String getDateArrived() {
         return dateArrived;
     }

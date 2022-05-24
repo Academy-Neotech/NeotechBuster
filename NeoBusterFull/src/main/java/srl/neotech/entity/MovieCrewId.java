@@ -11,15 +11,18 @@ import java.util.Objects;
 @Embeddable
 public class MovieCrewId implements Serializable {
     private static final long serialVersionUID = 681534822595495642L;
+    @Column(name = "movie_id", nullable = false)
     private Integer movieId;
 
+    @Column(name = "person_id", nullable = false)
     private Integer personId;
 
+    @Column(name = "department_id", nullable = false)
     private Integer departmentId;
 
+    @Column(name = "job", nullable = false, length = 200)
     private String job;
 
-    @Column(name = "movie_id", nullable = false)
     public Integer getMovieId() {
         return movieId;
     }
@@ -28,7 +31,6 @@ public class MovieCrewId implements Serializable {
         this.movieId = movieId;
     }
 
-    @Column(name = "person_id", nullable = false)
     public Integer getPersonId() {
         return personId;
     }
@@ -37,7 +39,6 @@ public class MovieCrewId implements Serializable {
         this.personId = personId;
     }
 
-    @Column(name = "department_id", nullable = false)
     public Integer getDepartmentId() {
         return departmentId;
     }
@@ -46,7 +47,6 @@ public class MovieCrewId implements Serializable {
         this.departmentId = departmentId;
     }
 
-    @Column(name = "job", nullable = false, length = 200)
     public String getJob() {
         return job;
     }

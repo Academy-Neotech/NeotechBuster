@@ -1,19 +1,23 @@
 package srl.neotech.entity;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
-@Entity(name = "Movie_CompanyEntity")
+@Entity
 @Table(name = "movie_company")
-public class MovieCompany implements Serializable {
-    private static final long serialVersionUID = -6489851447135819200L;
+public class MovieCompany {
+    @EmbeddedId
     private MovieCompanyId id;
 
+    @MapsId("movieId")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "movie_id", nullable = false)
     private Movie movie;
 
+    @MapsId("companyId")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "company_id", nullable = false)
     private ProductionCompany company;
 
-    @EmbeddedId
     public MovieCompanyId getId() {
         return id;
     }
@@ -22,9 +26,6 @@ public class MovieCompany implements Serializable {
         this.id = id;
     }
 
-    @MapsId("movieId")
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "movie_id", nullable = false)
     public Movie getMovie() {
         return movie;
     }
@@ -33,9 +34,6 @@ public class MovieCompany implements Serializable {
         this.movie = movie;
     }
 
-    @MapsId("companyId")
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "company_id", nullable = false)
     public ProductionCompany getCompany() {
         return company;
     }

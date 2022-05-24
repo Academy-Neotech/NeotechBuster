@@ -1,23 +1,25 @@
 package srl.neotech.entity;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.time.LocalDate;
 
-@Entity(name = "CardEntity")
+@Entity
 @Table(name = "card")
-public class Card implements Serializable {
-    private static final long serialVersionUID = -8384126447129176946L;
-    private Integer id;
-
-    private User username;
-
-    private Integer balance;
-
-    private LocalDate expirationDate;
-
+public class Card {
     @Id
     @Column(name = "card_id", nullable = false)
+    private Integer id;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "username", nullable = false)
+    private User username;
+
+    @Column(name = "balance")
+    private Integer balance;
+
+    @Column(name = "expiration_date")
+    private LocalDate expirationDate;
+
     public Integer getId() {
         return id;
     }
@@ -26,8 +28,6 @@ public class Card implements Serializable {
         this.id = id;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "username", nullable = false)
     public User getUsername() {
         return username;
     }
@@ -36,7 +36,6 @@ public class Card implements Serializable {
         this.username = username;
     }
 
-    @Column(name = "balance")
     public Integer getBalance() {
         return balance;
     }
@@ -45,7 +44,6 @@ public class Card implements Serializable {
         this.balance = balance;
     }
 
-    @Column(name = "expiration_date")
     public LocalDate getExpirationDate() {
         return expirationDate;
     }

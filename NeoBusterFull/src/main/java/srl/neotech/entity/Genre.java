@@ -1,21 +1,25 @@
 package srl.neotech.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import java.io.Serializable;
+import javax.persistence.*;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
-@Entity(name = "GenreEntity")
+@Entity
 @Table(name = "genre")
-public class Genre implements Serializable {
-    private static final long serialVersionUID = 5268829837982542177L;
-    private Integer id;
-
-    private String genreName;
-
+public class Genre {
     @Id
     @Column(name = "genre_id", nullable = false)
+    private Integer id;
+
+    @Column(name = "genre_name", length = 100)
+    private String genreName;
+
+    @ManyToMany
+    @JoinTable(name = "movie_genres",
+            joinColumns = @JoinColumn(name = "genre_id"),
+            inverseJoinColumns = @JoinColumn(name = "movie_id"))
+    private Set<Movie> movies = new LinkedHashSet<>();
+
     public Integer getId() {
         return id;
     }
@@ -24,13 +28,20 @@ public class Genre implements Serializable {
         this.id = id;
     }
 
-    @Column(name = "genre_name", length = 100)
     public String getGenreName() {
         return genreName;
     }
 
     public void setGenreName(String genreName) {
         this.genreName = genreName;
+    }
+
+    public Set<Movie> getMovies() {
+        return movies;
+    }
+
+    public void setMovies(Set<Movie> movies) {
+        this.movies = movies;
     }
 
 }

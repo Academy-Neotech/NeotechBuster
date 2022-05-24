@@ -1,21 +1,25 @@
 package srl.neotech.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import java.io.Serializable;
+import javax.persistence.*;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
-@Entity(name = "PersonEntity")
+@Entity
 @Table(name = "person")
-public class Person implements Serializable {
-    private static final long serialVersionUID = 4687458337145817502L;
-    private Integer id;
-
-    private String personName;
-
+public class Person {
     @Id
     @Column(name = "person_id", nullable = false)
+    private Integer id;
+
+    @Column(name = "person_name", nullable = false, length = 500)
+    private String personName;
+
+    @OneToMany(mappedBy = "person")
+    private Set<MovieCrew> movieCrews = new LinkedHashSet<>();
+
+    @OneToMany(mappedBy = "person")
+    private Set<MovieCast> movieCasts = new LinkedHashSet<>();
+
     public Integer getId() {
         return id;
     }
@@ -24,13 +28,28 @@ public class Person implements Serializable {
         this.id = id;
     }
 
-    @Column(name = "person_name", nullable = false, length = 500)
     public String getPersonName() {
         return personName;
     }
 
     public void setPersonName(String personName) {
         this.personName = personName;
+    }
+
+    public Set<MovieCrew> getMovieCrews() {
+        return movieCrews;
+    }
+
+    public void setMovieCrews(Set<MovieCrew> movieCrews) {
+        this.movieCrews = movieCrews;
+    }
+
+    public Set<MovieCast> getMovieCasts() {
+        return movieCasts;
+    }
+
+    public void setMovieCasts(Set<MovieCast> movieCasts) {
+        this.movieCasts = movieCasts;
     }
 
 }

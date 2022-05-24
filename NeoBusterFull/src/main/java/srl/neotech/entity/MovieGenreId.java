@@ -11,11 +11,12 @@ import java.util.Objects;
 @Embeddable
 public class MovieGenreId implements Serializable {
     private static final long serialVersionUID = -7085716954069332973L;
+    @Column(name = "movie_id", nullable = false)
     private Integer movieId;
 
+    @Column(name = "genre_id", nullable = false)
     private Integer genreId;
 
-    @Column(name = "movie_id", nullable = false)
     public Integer getMovieId() {
         return movieId;
     }
@@ -24,7 +25,6 @@ public class MovieGenreId implements Serializable {
         this.movieId = movieId;
     }
 
-    @Column(name = "genre_id", nullable = false)
     public Integer getGenreId() {
         return genreId;
     }

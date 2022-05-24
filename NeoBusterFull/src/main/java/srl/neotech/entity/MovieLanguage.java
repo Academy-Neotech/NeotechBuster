@@ -1,21 +1,28 @@
 package srl.neotech.entity;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
-@Entity(name = "Movie_LanguageEntity")
+@Entity
 @Table(name = "movie_languages")
-public class MovieLanguage implements Serializable {
-    private static final long serialVersionUID = -1280953142613988002L;
+public class MovieLanguage {
+    @EmbeddedId
     private MovieLanguageId id;
 
+    @MapsId("movieId")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "movie_id", nullable = false)
     private Movie movie;
 
+    @MapsId("languageId")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "language_id", nullable = false)
     private Language language;
 
+    @MapsId("languageRoleId")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "language_role_id", nullable = false)
     private LanguageRole languageRole;
 
-    @EmbeddedId
     public MovieLanguageId getId() {
         return id;
     }
@@ -24,9 +31,6 @@ public class MovieLanguage implements Serializable {
         this.id = id;
     }
 
-    @MapsId("movieId")
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "movie_id", nullable = false)
     public Movie getMovie() {
         return movie;
     }
@@ -35,9 +39,6 @@ public class MovieLanguage implements Serializable {
         this.movie = movie;
     }
 
-    @MapsId("languageId")
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "language_id", nullable = false)
     public Language getLanguage() {
         return language;
     }
@@ -46,9 +47,6 @@ public class MovieLanguage implements Serializable {
         this.language = language;
     }
 
-    @MapsId("languageRoleId")
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "language_role_id", nullable = false)
     public LanguageRole getLanguageRole() {
         return languageRole;
     }

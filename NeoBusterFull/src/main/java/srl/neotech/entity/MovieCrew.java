@@ -1,21 +1,28 @@
 package srl.neotech.entity;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
-@Entity(name = "Movie_CrewEntity")
+@Entity
 @Table(name = "movie_crew")
-public class MovieCrew implements Serializable {
-    private static final long serialVersionUID = 3139304463782020671L;
+public class MovieCrew {
+    @EmbeddedId
     private MovieCrewId id;
 
+    @MapsId("movieId")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "movie_id", nullable = false)
     private Movie movie;
 
+    @MapsId("personId")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "person_id", nullable = false)
     private Person person;
 
+    @MapsId("departmentId")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "department_id", nullable = false)
     private Department department;
 
-    @EmbeddedId
     public MovieCrewId getId() {
         return id;
     }
@@ -24,9 +31,6 @@ public class MovieCrew implements Serializable {
         this.id = id;
     }
 
-    @MapsId("movieId")
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "movie_id", nullable = false)
     public Movie getMovie() {
         return movie;
     }
@@ -35,9 +39,6 @@ public class MovieCrew implements Serializable {
         this.movie = movie;
     }
 
-    @MapsId("personId")
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "person_id", nullable = false)
     public Person getPerson() {
         return person;
     }
@@ -46,9 +47,6 @@ public class MovieCrew implements Serializable {
         this.person = person;
     }
 
-    @MapsId("departmentId")
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "department_id", nullable = false)
     public Department getDepartment() {
         return department;
     }

@@ -1,45 +1,97 @@
 package srl.neotech.entity;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
-@Entity(name = "MovieEntity")
+@Entity
 @Table(name = "movie")
-public class Movie implements Serializable {
-    private static final long serialVersionUID = -4635243282854885823L;
-    private Integer id;
-
-    private String title;
-
-    private Integer budget;
-
-    private String homepage;
-
-    private String overview;
-
-    private BigDecimal popularity;
-
-    private LocalDate releaseDate;
-
-    private Long revenue;
-
-    private Integer runtime;
-
-    private String movieStatus;
-
-    private String tagline;
-
-    private BigDecimal voteAverage;
-
-    private Integer voteCount;
-
-    private String urlImage;
-
+public class Movie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "movie_id", nullable = false)
+    private Integer id;
+
+    @Column(name = "title", nullable = false, length = 1000)
+    private String title;
+
+    @Column(name = "budget")
+    private Integer budget;
+
+    @Column(name = "homepage", length = 1000)
+    private String homepage;
+
+    @Column(name = "overview", length = 1000)
+    private String overview;
+
+    @Column(name = "popularity", precision = 12, scale = 6)
+    private BigDecimal popularity;
+
+    @Column(name = "release_date")
+    private LocalDate releaseDate;
+
+    @Column(name = "revenue")
+    private Long revenue;
+
+    @Column(name = "runtime")
+    private Integer runtime;
+
+    @Column(name = "movie_status", length = 50)
+    private String movieStatus;
+
+    @Column(name = "tagline", length = 1000)
+    private String tagline;
+
+    @Column(name = "vote_average", precision = 4, scale = 2)
+    private BigDecimal voteAverage;
+
+    @Column(name = "vote_count")
+    private Integer voteCount;
+
+    @Column(name = "url_image", length = 200)
+    private String urlImage;
+
+    @ManyToMany
+    @JoinTable(name = "production_country",
+            joinColumns = @JoinColumn(name = "movie_id"),
+            inverseJoinColumns = @JoinColumn(name = "country_id"))
+    private Set<Country> countries = new LinkedHashSet<>();
+
+    @OneToMany(mappedBy = "movie")
+    private Set<MovieCrew> movieCrews = new LinkedHashSet<>();
+
+    @OneToMany(mappedBy = "movie")
+    private Set<Bookmovie> bookmovies = new LinkedHashSet<>();
+
+    @ManyToMany
+    @JoinTable(name = "movie_genres",
+            joinColumns = @JoinColumn(name = "movie_id"),
+            inverseJoinColumns = @JoinColumn(name = "genre_id"))
+    private Set<Genre> genres = new LinkedHashSet<>();
+
+    @OneToMany(mappedBy = "movie")
+    private Set<MovieLanguage> movieLanguages = new LinkedHashSet<>();
+
+    @OneToMany(mappedBy = "movie")
+    private Set<MovieCast> movieCasts = new LinkedHashSet<>();
+
+    @ManyToMany
+    @JoinTable(name = "movie_keywords",
+            joinColumns = @JoinColumn(name = "movie_id"),
+            inverseJoinColumns = @JoinColumn(name = "keyword_id"))
+    private Set<Keyword> keywords = new LinkedHashSet<>();
+
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "movie")
+    private Stockmovie stockmovie;
+
+    @ManyToMany
+    @JoinTable(name = "movie_company",
+            joinColumns = @JoinColumn(name = "movie_id"),
+            inverseJoinColumns = @JoinColumn(name = "company_id"))
+    private Set<ProductionCompany> productionCompanies = new LinkedHashSet<>();
+
     public Integer getId() {
         return id;
     }
@@ -48,7 +100,6 @@ public class Movie implements Serializable {
         this.id = id;
     }
 
-    @Column(name = "title", nullable = false, length = 1000)
     public String getTitle() {
         return title;
     }
@@ -57,7 +108,6 @@ public class Movie implements Serializable {
         this.title = title;
     }
 
-    @Column(name = "budget")
     public Integer getBudget() {
         return budget;
     }
@@ -66,7 +116,6 @@ public class Movie implements Serializable {
         this.budget = budget;
     }
 
-    @Column(name = "homepage", length = 1000)
     public String getHomepage() {
         return homepage;
     }
@@ -75,7 +124,6 @@ public class Movie implements Serializable {
         this.homepage = homepage;
     }
 
-    @Column(name = "overview", length = 1000)
     public String getOverview() {
         return overview;
     }
@@ -84,7 +132,6 @@ public class Movie implements Serializable {
         this.overview = overview;
     }
 
-    @Column(name = "popularity", precision = 12, scale = 6)
     public BigDecimal getPopularity() {
         return popularity;
     }
@@ -93,7 +140,6 @@ public class Movie implements Serializable {
         this.popularity = popularity;
     }
 
-    @Column(name = "release_date")
     public LocalDate getReleaseDate() {
         return releaseDate;
     }
@@ -102,7 +148,6 @@ public class Movie implements Serializable {
         this.releaseDate = releaseDate;
     }
 
-    @Column(name = "revenue")
     public Long getRevenue() {
         return revenue;
     }
@@ -111,7 +156,6 @@ public class Movie implements Serializable {
         this.revenue = revenue;
     }
 
-    @Column(name = "runtime")
     public Integer getRuntime() {
         return runtime;
     }
@@ -120,7 +164,6 @@ public class Movie implements Serializable {
         this.runtime = runtime;
     }
 
-    @Column(name = "movie_status", length = 50)
     public String getMovieStatus() {
         return movieStatus;
     }
@@ -129,7 +172,6 @@ public class Movie implements Serializable {
         this.movieStatus = movieStatus;
     }
 
-    @Column(name = "tagline", length = 1000)
     public String getTagline() {
         return tagline;
     }
@@ -138,7 +180,6 @@ public class Movie implements Serializable {
         this.tagline = tagline;
     }
 
-    @Column(name = "vote_average", precision = 4, scale = 2)
     public BigDecimal getVoteAverage() {
         return voteAverage;
     }
@@ -147,7 +188,6 @@ public class Movie implements Serializable {
         this.voteAverage = voteAverage;
     }
 
-    @Column(name = "vote_count")
     public Integer getVoteCount() {
         return voteCount;
     }
@@ -156,13 +196,84 @@ public class Movie implements Serializable {
         this.voteCount = voteCount;
     }
 
-    @Column(name = "url_image", length = 200)
     public String getUrlImage() {
         return urlImage;
     }
 
     public void setUrlImage(String urlImage) {
         this.urlImage = urlImage;
+    }
+
+    public Set<Country> getCountries() {
+        return countries;
+    }
+
+    public void setCountries(Set<Country> countries) {
+        this.countries = countries;
+    }
+
+    public Set<MovieCrew> getMovieCrews() {
+        return movieCrews;
+    }
+
+    public void setMovieCrews(Set<MovieCrew> movieCrews) {
+        this.movieCrews = movieCrews;
+    }
+
+    public Set<Bookmovie> getBookmovies() {
+        return bookmovies;
+    }
+
+    public void setBookmovies(Set<Bookmovie> bookmovies) {
+        this.bookmovies = bookmovies;
+    }
+
+    public Set<Genre> getGenres() {
+        return genres;
+    }
+
+    public void setGenres(Set<Genre> genres) {
+        this.genres = genres;
+    }
+
+    public Set<MovieLanguage> getMovieLanguages() {
+        return movieLanguages;
+    }
+
+    public void setMovieLanguages(Set<MovieLanguage> movieLanguages) {
+        this.movieLanguages = movieLanguages;
+    }
+
+    public Set<MovieCast> getMovieCasts() {
+        return movieCasts;
+    }
+
+    public void setMovieCasts(Set<MovieCast> movieCasts) {
+        this.movieCasts = movieCasts;
+    }
+
+    public Set<Keyword> getKeywords() {
+        return keywords;
+    }
+
+    public void setKeywords(Set<Keyword> keywords) {
+        this.keywords = keywords;
+    }
+
+    public Stockmovie getStockmovie() {
+        return stockmovie;
+    }
+
+    public void setStockmovie(Stockmovie stockmovie) {
+        this.stockmovie = stockmovie;
+    }
+
+    public Set<ProductionCompany> getProductionCompanies() {
+        return productionCompanies;
+    }
+
+    public void setProductionCompanies(Set<ProductionCompany> productionCompanies) {
+        this.productionCompanies = productionCompanies;
     }
 
 }

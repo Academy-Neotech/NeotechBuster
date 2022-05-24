@@ -1,21 +1,22 @@
 package srl.neotech.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import java.io.Serializable;
+import javax.persistence.*;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
-@Entity(name = "GenderEntity")
+@Entity
 @Table(name = "gender")
-public class Gender implements Serializable {
-    private static final long serialVersionUID = 7868782929339624215L;
-    private Integer id;
-
-    private String gender;
-
+public class Gender {
     @Id
     @Column(name = "gender_id", nullable = false)
+    private Integer id;
+
+    @Column(name = "gender", length = 20)
+    private String gender;
+
+    @OneToMany(mappedBy = "gender")
+    private Set<MovieCast> movieCasts = new LinkedHashSet<>();
+
     public Integer getId() {
         return id;
     }
@@ -24,13 +25,20 @@ public class Gender implements Serializable {
         this.id = id;
     }
 
-    @Column(name = "gender", length = 20)
     public String getGender() {
         return gender;
     }
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public Set<MovieCast> getMovieCasts() {
+        return movieCasts;
+    }
+
+    public void setMovieCasts(Set<MovieCast> movieCasts) {
+        this.movieCasts = movieCasts;
     }
 
 }

@@ -1,21 +1,22 @@
 package srl.neotech.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import java.io.Serializable;
+import javax.persistence.*;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
-@Entity(name = "Language_RoleEntity")
+@Entity
 @Table(name = "language_role")
-public class LanguageRole implements Serializable {
-    private static final long serialVersionUID = -7770263213373857404L;
-    private Integer id;
-
-    private String languageRole;
-
+public class LanguageRole {
     @Id
     @Column(name = "role_id", nullable = false)
+    private Integer id;
+
+    @Column(name = "language_role", length = 20)
+    private String languageRole;
+
+    @OneToMany(mappedBy = "languageRole")
+    private Set<MovieLanguage> movieLanguages = new LinkedHashSet<>();
+
     public Integer getId() {
         return id;
     }
@@ -24,13 +25,20 @@ public class LanguageRole implements Serializable {
         this.id = id;
     }
 
-    @Column(name = "language_role", length = 20)
     public String getLanguageRole() {
         return languageRole;
     }
 
     public void setLanguageRole(String languageRole) {
         this.languageRole = languageRole;
+    }
+
+    public Set<MovieLanguage> getMovieLanguages() {
+        return movieLanguages;
+    }
+
+    public void setMovieLanguages(Set<MovieLanguage> movieLanguages) {
+        this.movieLanguages = movieLanguages;
     }
 
 }

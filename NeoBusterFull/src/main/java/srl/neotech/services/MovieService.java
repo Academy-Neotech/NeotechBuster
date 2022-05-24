@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import srl.neotech.dao.MovieDAO;
 import srl.neotech.entity.MovieCrew;
+import srl.neotech.model.Attore;
 import srl.neotech.model.Movie;
 
 @Service
@@ -45,6 +46,10 @@ public class MovieService {
 		
 		public List<MovieCrew> movieTest(Integer id) {
 		     	return movieDAO.moveCrewTest(id);
+		}
+		
+		public List<Attore> getAttoriFromMovietitle(String title){
+			return movieDAO.getAttorifromMovieTitle(title);
 		}
 		
 }

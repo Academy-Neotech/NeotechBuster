@@ -1,21 +1,25 @@
 package srl.neotech.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import java.io.Serializable;
+import javax.persistence.*;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
-@Entity(name = "Production_CompanyEntity")
+@Entity
 @Table(name = "production_company")
-public class ProductionCompany implements Serializable {
-    private static final long serialVersionUID = 9222017754251942820L;
-    private Integer id;
-
-    private String companyName;
-
+public class ProductionCompany {
     @Id
     @Column(name = "company_id", nullable = false)
+    private Integer id;
+
+    @Column(name = "company_name", length = 200)
+    private String companyName;
+
+    @ManyToMany
+    @JoinTable(name = "movie_company",
+            joinColumns = @JoinColumn(name = "company_id"),
+            inverseJoinColumns = @JoinColumn(name = "movie_id"))
+    private Set<Movie> movies = new LinkedHashSet<>();
+
     public Integer getId() {
         return id;
     }
@@ -24,13 +28,20 @@ public class ProductionCompany implements Serializable {
         this.id = id;
     }
 
-    @Column(name = "company_name", length = 200)
     public String getCompanyName() {
         return companyName;
     }
 
     public void setCompanyName(String companyName) {
         this.companyName = companyName;
+    }
+
+    public Set<Movie> getMovies() {
+        return movies;
+    }
+
+    public void setMovies(Set<Movie> movies) {
+        this.movies = movies;
     }
 
 }

@@ -1,29 +1,35 @@
 package srl.neotech.entity;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.time.LocalDate;
 
-@Entity(name = "BookmovieEntity")
+@Entity
 @Table(name = "bookmovie")
-public class Bookmovie implements Serializable {
-    private static final long serialVersionUID = -6321104843858695042L;
-    private Integer id;
-
-    private Movie movie;
-
-    private User username;
-
-    private LocalDate dateFrom;
-
-    private LocalDate dateTo;
-
-    private LocalDate dateReturn;
-
-    private String price;
-
+public class Bookmovie {
     @Id
     @Column(name = "bookmovie_id", nullable = false)
+    private Integer id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "movie_id")
+    private Movie movie;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "username")
+    private User username;
+
+    @Column(name = "date_from")
+    private LocalDate dateFrom;
+
+    @Column(name = "date_to")
+    private LocalDate dateTo;
+
+    @Column(name = "date_return")
+    private LocalDate dateReturn;
+
+    @Column(name = "price", length = 45)
+    private String price;
+
     public Integer getId() {
         return id;
     }
@@ -32,8 +38,6 @@ public class Bookmovie implements Serializable {
         this.id = id;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "movie_id")
     public Movie getMovie() {
         return movie;
     }
@@ -42,8 +46,6 @@ public class Bookmovie implements Serializable {
         this.movie = movie;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "username")
     public User getUsername() {
         return username;
     }
@@ -52,7 +54,6 @@ public class Bookmovie implements Serializable {
         this.username = username;
     }
 
-    @Column(name = "date_from")
     public LocalDate getDateFrom() {
         return dateFrom;
     }
@@ -61,7 +62,6 @@ public class Bookmovie implements Serializable {
         this.dateFrom = dateFrom;
     }
 
-    @Column(name = "date_to")
     public LocalDate getDateTo() {
         return dateTo;
     }
@@ -70,7 +70,6 @@ public class Bookmovie implements Serializable {
         this.dateTo = dateTo;
     }
 
-    @Column(name = "date_return")
     public LocalDate getDateReturn() {
         return dateReturn;
     }
@@ -79,7 +78,6 @@ public class Bookmovie implements Serializable {
         this.dateReturn = dateReturn;
     }
 
-    @Column(name = "price", length = 45)
     public String getPrice() {
         return price;
     }
