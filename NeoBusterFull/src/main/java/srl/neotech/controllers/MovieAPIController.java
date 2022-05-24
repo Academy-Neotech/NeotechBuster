@@ -128,5 +128,44 @@ public class MovieAPIController {
 		
 	return response;	
 	}
+	
+	@ResponseBody 
+	@GetMapping (value = "/api/insertFilm", produces=MediaType.APPLICATION_JSON_VALUE) 
+	public ResponseBase insertFilm(@RequestParam("movie_id") Integer movie_id, @RequestParam("movie_title")String movie_title) {
+		ResponseBase response=new ResponseBase();
+		  
+		  try {
+			movieService.insertMovie(movie_id, movie_title);
+			response.setCode("OK");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			response.setCode("KO");
+		}
+		  
+		  
+		return response;
+	}
+	
+	
+	
+	/*TODO  in JPAHibernate
+	 * 
+	 *    getMoviesFromLanguageCode
+	 *    
+	 *    getMoviesFromProductionCompany
+	 *    
+	 *    getMoviesSpecialOffer
+	 *    
+	 *    getMoviesLatestArrival
+	 *    
+	 *    getMovieswithGenderUnspecified
+	 *    
+	 *    getMoviesFromKeywordName
+	 *    
+	 *   
+	 *    
+	 */
 }
+
 

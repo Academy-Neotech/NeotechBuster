@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import srl.neotech.entity.Movie;
 import srl.neotech.entity.MovieCrew;
 import srl.neotech.entity.Person;
 import srl.neotech.mapper.GlobalMapper;
@@ -64,6 +65,11 @@ public class MovieDAO {
 			}
 
 			return listaAttori;
+		}
+		
+		
+		public Movie insertMovie(Movie movie) {
+			return movieJPaRepository.save(movie);
 		}
 		
 	
