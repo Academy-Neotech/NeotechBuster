@@ -6,15 +6,18 @@ public class Attore {
 		
 	}
 	
-	private String personName;
+	private String nomeCognome;
 
-	public String getPersonName() {
-		return personName;
+	public String getNomeCognome() {
+		return nomeCognome;
 	}
 
-	public void setPersonName(String personName) {
-		this.personName = personName;
+	public void setNomeCognome(String nomeCognome) {
+		this.nomeCognome = nomeCognome;
 	}
+	
+	
+
 	
 	
 }

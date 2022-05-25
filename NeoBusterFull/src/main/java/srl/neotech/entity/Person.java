@@ -17,7 +17,7 @@ public class Person {
     @OneToMany(mappedBy = "person")
     private Set<MovieCrew> movieCrews = new LinkedHashSet<>();
 
-    @OneToMany(mappedBy = "person")
+    @OneToMany(mappedBy = "person", cascade = {CascadeType.PERSIST})
     private Set<MovieCast> movieCasts = new LinkedHashSet<>();
 
     public Integer getId() {

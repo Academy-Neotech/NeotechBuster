@@ -10,7 +10,7 @@ import java.util.Set;
 @Table(name = "movie")
 public class Movie {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "movie_id", nullable = false)
     private Integer id;
 
@@ -59,10 +59,10 @@ public class Movie {
             inverseJoinColumns = @JoinColumn(name = "country_id"))
     private Set<Country> countries = new LinkedHashSet<>();
 
-    @OneToMany(mappedBy = "movie")
+    @OneToMany(mappedBy = "movie", cascade = {CascadeType.PERSIST})
     private Set<MovieCrew> movieCrews = new LinkedHashSet<>();
 
-    @OneToMany(mappedBy = "movie")
+    @OneToMany(mappedBy = "movie", cascade = {CascadeType.PERSIST})
     private Set<Bookmovie> bookmovies = new LinkedHashSet<>();
 
     @ManyToMany
@@ -71,10 +71,10 @@ public class Movie {
             inverseJoinColumns = @JoinColumn(name = "genre_id"))
     private Set<Genre> genres = new LinkedHashSet<>();
 
-    @OneToMany(mappedBy = "movie")
+    @OneToMany(mappedBy = "movie", cascade = {CascadeType.PERSIST})
     private Set<MovieLanguage> movieLanguages = new LinkedHashSet<>();
 
-    @OneToMany(mappedBy = "movie")
+    @OneToMany(mappedBy = "movie", cascade = {CascadeType.PERSIST})
     private Set<MovieCast> movieCasts = new LinkedHashSet<>();
 
     @ManyToMany
@@ -83,7 +83,7 @@ public class Movie {
             inverseJoinColumns = @JoinColumn(name = "keyword_id"))
     private Set<Keyword> keywords = new LinkedHashSet<>();
 
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "movie")
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "movie", cascade=CascadeType.PERSIST)
     private Stockmovie stockmovie;
 
     @ManyToMany

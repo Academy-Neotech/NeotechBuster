@@ -1,0 +1,16 @@
+<mappings xmlns="http://dozermapper.github.io/schema/bean-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://dozermapper.github.io/schema/bean-mapping https://dozermapper.github.io/schema/bean-mapping.xsd">
+  
+  
+<mapping>
+        <class-a>srl.neotech.entity.Person</class-a>
+        <class-b>srl.neotech.model.Attore</class-b>
+        <field>
+            <a>personName</a>
+            <b>nomeCognome</b>
+        </field>
+</mapping>
+    
+    
+    
+    
+</mappings>

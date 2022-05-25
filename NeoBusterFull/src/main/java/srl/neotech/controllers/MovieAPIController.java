@@ -147,6 +147,22 @@ public class MovieAPIController {
 		return response;
 	}
 	
+	@ResponseBody 
+	@GetMapping (value = "/api/deleteFilm", produces=MediaType.APPLICATION_JSON_VALUE) 
+	public ResponseBase deleteFilm(@RequestParam("movie_id") Integer movie_id) {
+		ResponseBase response=new ResponseBase();
+		
+		try {
+			movieService.deleteFilm(movie_id);
+			response.setCode("OK");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			response.setCode("KO");
+		}
+		
+	return response;
+	}
 	
 	
 	/*TODO  in JPAHibernate

@@ -2,8 +2,14 @@ package srl.neotech.services;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
+
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -55,32 +61,59 @@ public class MovieService {
 		public List<Attore> getAttoriFromMovietitle(String title){
 			return movieDAO.getAttorifromMovieTitle(title);
 		}
+	
+		@Transactional //IUD 
+		public void aggiungiCorrentista() {
+			//Insert Update Delete	
+			// correntisataDAO.aggiungi()
+			// assegniDAO.RilasciaBlocchetto()
+			//carteDiCreditoDAO.AssegnaCC() ---exception... compensare..  
+			//AssicurazioneDAO.assegna().
+		}
+		//after
 		
-		public void insertMovie(Integer movie_id, String movie_title) {
-		    srl.neotech.entity.Movie movie=new srl.neotech.entity.Movie();
+		
+		
+		@Transactional
+		public void insertMovie(Integer movie_id, String movie_title) { 
+			
+			//entity
+			srl.neotech.entity.Movie movie=new srl.neotech.entity.Movie();
+		    movie.setId(movie_id);
 		    movie.setTitle(movie_title);
 		    movie.setBudget(4000);
 		    movie.setHomepage("http://");
-		    movie.setId(movieDAO.insertMovie(movie).getId());
-		    for (int i=1;i<5;i++) {
-		    	MovieCast mc=new MovieCast();
-		    	mc.setCharacterName("Prova");
-		    	Person p=new Person();
-		    	p.setId(ThreadLocalRandom.current().nextInt(8000, 8400 + 1));
-		    	p.setPersonName("Person"+i);
-		    	MovieCastId mcId=new MovieCastId();
-		    	mcId.setPersonId(p.getId());
-		    	mcId.setMovieId(movie_id);
-		    	mcId.setCastOrder(ThreadLocalRandom.current().nextInt(1, 40 + 1));
-		    	mc.setId(mcId);
-		    	movie.getMovieCasts().add(mc);
-		    }
+		    
+		    
+		    Person p=new Person();
+		    p.setId(movie_id);
+		    p.setPersonName("NomeCognome:"+movie_title);
+		    
+		    
+		    MovieCast mc=new MovieCast();
+		    mc.setCharacterName("BLABLA");
+            
+		    //reverse
+		    mc.setMovie(movie);
+            mc.setPerson(p);
+            
+            //key
+		    MovieCastId mcId=new MovieCastId();
+		    mcId.setMovieId(movie.getId());
+		    mcId.setPersonId(p.getId());
+		    mcId.setCastOrder(1);
+		    mc.setId(mcId);
+		    
+		    //forward
+		    movie.setMovieCasts(Collections.singleton(mc));		
+		    p.setMovieCasts(Collections.singleton(mc));
 		    
 		    movieDAO.insertMovie(movie);
-		    System.out.println("ho insertio il film id:"+movie_id);
-		    
-		    
-			
+		}
+		
+		@Transactional
+		public void deleteFilm(Integer movie_id) {
+			movieDAO.deleteFilm(movie_id);
 		}
 		
 }

@@ -24,7 +24,7 @@ public interface MovieJPARepository extends JpaRepository<Movie, Integer>{
 	
 	
 	//     HQL-------
-	@Query("select p from Person p join fetch  p.movieCasts mc where mc.movie.title= :titolo")
+	@Query("select p from Person p join p.movieCasts mc where mc.movie.title= :titolo")
 	public List<Person>   getPersonsFromMovieTitle (String titolo);
 	
 	
