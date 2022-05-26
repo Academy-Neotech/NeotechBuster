@@ -19,6 +19,7 @@ import srl.neotech.entity.MovieCast;
 import srl.neotech.entity.MovieCastId;
 import srl.neotech.entity.MovieCrew;
 import srl.neotech.entity.Person;
+import srl.neotech.mapper.DozerMapper;
 import srl.neotech.model.Attore;
 import srl.neotech.model.Movie;
 
@@ -62,15 +63,31 @@ public class MovieService {
 			return movieDAO.getAttorifromMovieTitle(title);
 		}
 	
-		@Transactional //IUD 
-		public void aggiungiCorrentista() {
-			//Insert Update Delete	
-			// correntisataDAO.aggiungi()
-			// assegniDAO.RilasciaBlocchetto()
-			//carteDiCreditoDAO.AssegnaCC() ---exception... compensare..  
-			//AssicurazioneDAO.assegna().
+		
+		
+		
+		
+		public List<srl.neotech.model.Movie>getMoviesFromLanguageCode(String languageCode){
+			   List<srl.neotech.entity.Movie>movies=movieDAO.getMoviesFromLanguageCode(languageCode);
+			   
+			   List<srl.neotech.model.Movie>listaFilm=new ArrayList<srl.neotech.model.Movie>();
+			   
+			   for (srl.neotech.entity.Movie movie:movies) {
+				   srl.neotech.model.Movie filmMappati=DozerMapper.getInstance().map(movie,srl.neotech.model.Movie.class);
+				   listaFilm.add(filmMappati);
+			   }
+			
+			   
+			   
+			return listaFilm;
 		}
-		//after
+		
+		
+		
+		
+		
+		
+		
 		
 		
 		

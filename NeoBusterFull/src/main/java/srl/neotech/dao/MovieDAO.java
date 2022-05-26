@@ -2,14 +2,16 @@ package srl.neotech.dao;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.github.dozermapper.core.DozerBeanMapperBuilder;
-import com.github.dozermapper.core.Mapper;
-
+import srl.neotech.entity.Language;
 import srl.neotech.entity.Movie;
 import srl.neotech.entity.MovieCrew;
 import srl.neotech.entity.Person;
@@ -28,7 +30,12 @@ public class MovieDAO {
 
 	@Autowired
 	MovieJPARepository  movieJPaRepository;
+
 	
+	
+@Autowired
+SessionFactory sessionFactory;
+
 
 		public List<srl.neotech.model.Movie> searchMovieByArrival (Date arrival_date){
 		return movieRepository.searchMovieByArrival(arrival_date);
@@ -67,6 +74,27 @@ public class MovieDAO {
 
 			return listaAttori;
 		}
+		
+		
+		
+			   
+			   
+			
+		@Transactional
+		public List<Movie>getMoviesFromLanguageCode(String languageCode){
+			return movieJPaRepository.getMoviesFromLanguageCode(languageCode);
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 		public Movie insertMovie(Movie movie) {

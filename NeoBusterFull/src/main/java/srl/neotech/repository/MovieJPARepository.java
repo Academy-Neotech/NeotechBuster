@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import srl.neotech.entity.Language;
 import srl.neotech.entity.Movie;
 import srl.neotech.entity.MovieCrew;
 import srl.neotech.entity.Person;
@@ -28,11 +29,7 @@ public interface MovieJPARepository extends JpaRepository<Movie, Integer>{
 	public List<Person>   getPersonsFromMovieTitle (String titolo);
 	
 	
-	//HQL
-	@Query("select m from Movie m join fetch  m.movieLanguages ml where ml.language.languageCode= :language")
-	public List<Movie> getMoviesByLanguage(@Param("language") String language);
-
-	//SQL
-//	@Query(value= "select m.title, l.language_name from movie m, movie_languages ml, language l where m.movie_id=ml.movie_id and l.language_id=ml.language_id and l.language_code='it'",nativeQuery =true)
-//	public Movie getMovieByLanguage(@Param("language") String language);
+	@Query("select m from Movie m join m.movieLanguages ml where ml.language.languageCode= :language_code")
+	public List<Movie> getMoviesFromLanguageCode(@Param ("language_code")String languageCode);
+	
 }
