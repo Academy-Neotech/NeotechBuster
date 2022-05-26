@@ -31,7 +31,6 @@ public class MovieDAO {
 	
 
 		public List<srl.neotech.model.Movie> searchMovieByArrival (Date arrival_date){
-
 		return movieRepository.searchMovieByArrival(arrival_date);
 
 		}
@@ -81,8 +80,14 @@ public class MovieDAO {
 			
 		}
 		
-	
-}
+
+//		public List<Movie> searchMovieByLanguage(String language){
+//			List<Movie> entity=movieJPaRepository.getMoviesByLanguage(language);
+//			List<Movie> movie = GlobalMapper.INSTANCE.movieToLanguage(entity);
+//			return movie;
+		
+		}
+
 	
 	
 

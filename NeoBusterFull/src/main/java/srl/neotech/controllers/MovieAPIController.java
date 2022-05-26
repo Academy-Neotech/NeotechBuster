@@ -165,6 +165,28 @@ public class MovieAPIController {
 	}
 	
 	
+	
+//	@ResponseBody 
+//	@GetMapping (value = "/api/getMovieByLanguage/{language}", produces=MediaType.APPLICATION_JSON_VALUE) 
+//	//--------------------------------------------------------------------Aggiungere se errore do OutpuStream
+//	
+//	public List<Movie> getMoviesByLanguage(@PathVariable("language") String language, HttpServletResponse response) {
+//
+//	List<srl.neotech.entity.Movie> m=null;
+//	try {
+//		m = movieService.getMoviesByLanguage(language);
+//		//Aggiungere se errore do OutpuStream
+//		response.getOutputStream().write(null, 0, response.getBufferSize());
+//		
+//	} catch (Exception e) {
+//		// TODO Auto-generated catch block
+//		e.printStackTrace();
+//	}	
+//	
+//    return m;
+//		
+	}
+	
 	/*TODO  in JPAHibernate
 	 * 
 	 *    getMoviesFromLanguageCode
@@ -182,6 +204,6 @@ public class MovieAPIController {
 	 *   
 	 *    
 	 */
-}
+
 
 

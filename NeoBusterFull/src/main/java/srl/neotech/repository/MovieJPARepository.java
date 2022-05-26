@@ -28,7 +28,11 @@ public interface MovieJPARepository extends JpaRepository<Movie, Integer>{
 	public List<Person>   getPersonsFromMovieTitle (String titolo);
 	
 	
-	
-	
-	
+	//HQL
+	@Query("select m from Movie m join fetch  m.movieLanguages ml where ml.language.languageCode= :language")
+	public List<Movie> getMoviesByLanguage(@Param("language") String language);
+
+	//SQL
+//	@Query(value= "select m.title, l.language_name from movie m, movie_languages ml, language l where m.movie_id=ml.movie_id and l.language_id=ml.language_id and l.language_code='it'",nativeQuery =true)
+//	public Movie getMovieByLanguage(@Param("language") String language);
 }

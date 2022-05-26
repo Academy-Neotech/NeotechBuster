@@ -116,4 +116,9 @@ public class MovieService {
 			movieDAO.deleteFilm(movie_id);
 		}
 		
-}
+//		public List<srl.neotech.entity.Movie> getMoviesByLanguage(String language){
+//			return movieDAO.searchMovieByLanguage(language);
+//		
+		
+		}		
+		
