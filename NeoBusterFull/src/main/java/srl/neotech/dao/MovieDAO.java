@@ -2,16 +2,17 @@ package srl.neotech.dao;
 
 import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.transaction.Transactional;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
-import srl.neotech.entity.Language;
 import srl.neotech.entity.Movie;
 import srl.neotech.entity.MovieCrew;
 import srl.neotech.entity.Person;
@@ -75,28 +76,16 @@ SessionFactory sessionFactory;
 			return listaAttori;
 		}
 		
-		
-		
-			   
-			   
+   
 			
 		@Transactional
-		public List<Movie>getMoviesFromLanguageCode(String languageCode){
-			return movieJPaRepository.getMoviesFromLanguageCode(languageCode);
+		public Page<Movie>getMoviesFromLanguageCode(String languageCode){
+			Pageable pageableRequest = PageRequest.of(1,100);
+			return movieJPaRepository.getMoviesFromLanguageCode(languageCode,pageableRequest);
 		}
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
 		public Movie insertMovie(Movie movie) {
 			return movieJPaRepository.saveAndFlush(movie);
 		}

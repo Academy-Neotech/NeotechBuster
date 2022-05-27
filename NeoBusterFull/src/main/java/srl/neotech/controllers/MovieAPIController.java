@@ -1,11 +1,13 @@
 package srl.neotech.controllers;
 
+import java.net.http.HttpResponse;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.coyote.http11.HttpOutputBuffer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -15,6 +17,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import srl.neotech.entity.MovieCrew;
 import srl.neotech.model.Attore;
@@ -133,27 +137,16 @@ public class MovieAPIController {
 	
 	
 	@ResponseBody 
+	@JsonBackReference
 	@GetMapping (value = "/api/getMoviesFromLanguageCode", produces=MediaType.APPLICATION_JSON_VALUE) 
-	public 	List<Movie> getMoviesFromLanguageCode(@RequestParam("language_code")String languageCode,HttpServletResponse response){
+	public 	List<Movie> getMoviesFromLanguageCode(@RequestParam("language_code")String languageCode ){
 		
-		List<Movie>movieList=null;
-		
+		List<Movie>movieList=null;		
 		try {
-			
-			
-			
-			response.getOutputStream().write(null, 0, response.getBufferSize());
-			
-			movieList=movieService.getMoviesFromLanguageCode(languageCode);
-			
+			movieList=movieService.getMoviesFromLanguageCode(languageCode);	
 		} catch (Exception e) {
-			e.printStackTrace();
-			
-			
+			e.printStackTrace();	
 		}
-		
-		
-		
 	return movieList;
 	}
 	

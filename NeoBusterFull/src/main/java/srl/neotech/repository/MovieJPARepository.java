@@ -2,11 +2,12 @@ package srl.neotech.repository;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import srl.neotech.entity.Language;
 import srl.neotech.entity.Movie;
 import srl.neotech.entity.MovieCrew;
 import srl.neotech.entity.Person;
@@ -30,6 +31,6 @@ public interface MovieJPARepository extends JpaRepository<Movie, Integer>{
 	
 	
 	@Query("select m from Movie m join m.movieLanguages ml where ml.language.languageCode= :language_code")
-	public List<Movie> getMoviesFromLanguageCode(@Param ("language_code")String languageCode);
+	public Page<Movie> getMoviesFromLanguageCode(@Param ("language_code")String languageCode, Pageable pageable);
 	
 }
