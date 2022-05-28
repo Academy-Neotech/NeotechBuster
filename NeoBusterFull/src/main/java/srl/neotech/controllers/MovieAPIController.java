@@ -131,6 +131,29 @@ public class MovieAPIController {
 	return response;	
 	}
 	
+	/*TODO  in JPAHibernate
+	 * 
+	 *    getMoviesFromLanguageCode  V
+	 *    
+	 *    getMoviesFromProductionCompany   V
+	 *    
+	 *    getMoviesSpecialOffer         V
+	 *    
+	 *    getMoviesLatestArrival        V
+	 *    
+	 *    getMovieswithGenderUnspecified    V
+	 *    
+	 *    getMoviesFromKeywordName      V
+	 *    
+	 *   
+	 *   insert e update
+	 *   
+	 *   
+	 */
+	
+	
+	
+	
 	
 	@ResponseBody 
 	@GetMapping (value = "/api/getMoviesFromLanguageCode", produces=MediaType.APPLICATION_JSON_VALUE) 
@@ -139,11 +162,7 @@ public class MovieAPIController {
 		List<Movie>movieList=null;
 		
 		try {
-			
-			
-			
 			response.getOutputStream().write(null, 0, response.getBufferSize());
-			
 			movieList=movieService.getMoviesFromLanguageCode(languageCode);
 			
 		} catch (Exception e) {
@@ -151,18 +170,127 @@ public class MovieAPIController {
 			
 			
 		}
-		
-		
-		
 	return movieList;
 	}
 	
 	
+	@ResponseBody 
+	@GetMapping (value = "/api/getMoviesFromProductionCompany", produces=MediaType.APPLICATION_JSON_VALUE) 
+	public ResponseBase getMoviesFromPCompany(@RequestParam("productionCompany")String companyName) {
+		ResponseBase reBase=new ResponseBase();
+		
+		try {
+			List<Movie>movieList=movieService.getMoviesFromPCompany(companyName);
+			reBase.setSimpleData(movieList);
+			reBase.setCode("OK");
+		} catch (Exception e) {
+			reBase.setCode("KO");
+			reBase.setDescr(e.getMessage());
+			e.printStackTrace();
+		}
+		
+		return reBase;
+	}
 	
 	
+	@ResponseBody 
+	@GetMapping (value = "/api/getMoviesFromSpecialOffer", produces=MediaType.APPLICATION_JSON_VALUE) 
+	public ResponseBase getMoviesFromSpecialOffer(@RequestParam("specialOffer")Integer specialOffer) {
+		ResponseBase reBase=new ResponseBase();
+		
+		try {
+			List<Movie>movieList=movieService.getMoviesFromSpecialOffer(specialOffer);
+			reBase.setSimpleData(movieList);
+			reBase.setCode("OK");
+		} catch (Exception e) {
+			reBase.setCode("KO");
+			reBase.setDescr(e.getMessage());
+			e.printStackTrace();
+		}
+		
+		
+		
+		return reBase;
+	}
+	
+	@ResponseBody 
+	@GetMapping (value = "/api/getMoviesFromLatestArrival", produces=MediaType.APPLICATION_JSON_VALUE) 
+	public ResponseBase getMoviesFromLatestArrival(@RequestParam("specialOffer")String dataArrived) {
+		ResponseBase reBase=new ResponseBase();
+	
+		try {
+			List<Movie>movieList=movieService.getMoviesFromLatestArrival(dataArrived);
+			reBase.setSimpleData(movieList);
+			reBase.setCode("OK");
+		} catch (Exception e) {
+			reBase.setCode("KO");
+			reBase.setDescr(e.getMessage());
+			e.printStackTrace();
+		}
+		
+		
+	
+	return reBase; 
+	}
 	
 	
+	@ResponseBody 
+	@GetMapping (value = "/api/getMoviesFromGenderUnspecifed", produces=MediaType.APPLICATION_JSON_VALUE) 
+	public ResponseBase getMoviesFromGenderUnspecifed(@RequestParam("Unspecifed")String gender) {
+		ResponseBase reBase=new ResponseBase();
 	
+	try {
+		List<Movie>movieList=movieService.getMoviesFromGenderUnspecified(gender);
+		reBase.setSimpleData(movieList);
+		reBase.setCode("OK");
+	} catch (Exception e) {
+		reBase.setCode("KO");
+		reBase.setDescr(e.getMessage());
+		e.printStackTrace();
+	}
+		
+	return reBase;	
+	
+	}
+	
+	
+
+	@ResponseBody 
+	@GetMapping (value = "/api/getMoviesFromKeywordName", produces=MediaType.APPLICATION_JSON_VALUE) 
+	public ResponseBase getMoviesFromKeywordName(@RequestParam("keywordName")String keywordName) {
+		ResponseBase reBase=new ResponseBase();
+	
+	
+		try {
+			List<Movie>movieList=movieService.getMoviesFromKeywordName(keywordName);
+			reBase.setSimpleData(movieList);
+			reBase.setCode("OK");
+		} catch (Exception e) {
+			reBase.setCode("KO");
+			reBase.setDescr(e.getMessage());
+			e.printStackTrace();
+		}
+		
+		
+	return reBase;
+	}
+	
+	@ResponseBody
+	@GetMapping (value = "/api/insertPerson", produces=MediaType.APPLICATION_JSON_VALUE) 
+	public ResponseBase insertPerson(@RequestParam("person_id")Integer person_id,@RequestParam("person_name") String person_name) {
+		ResponseBase base=new ResponseBase();
+		
+		try {
+			movieService.insertPerson(person_id, person_name);
+			base.setCode("OK");
+		} catch (Exception e) {
+			base.setCode("KO");
+			base.setDescr(e.getMessage());
+			e.printStackTrace();
+		}
+		
+		return base;
+	}
 	
 	
 	
@@ -209,23 +337,7 @@ public class MovieAPIController {
 	}
 	
 	
-	/*TODO  in JPAHibernate
-	 * 
-	 *    getMoviesFromLanguageCode
-	 *    
-	 *    getMoviesFromProductionCompany
-	 *    
-	 *    getMoviesSpecialOffer
-	 *    
-	 *    getMoviesLatestArrival
-	 *    
-	 *    getMovieswithGenderUnspecified
-	 *    
-	 *    getMoviesFromKeywordName
-	 *    
-	 *   
-	 *    
-	 */
+	
 }
 
 

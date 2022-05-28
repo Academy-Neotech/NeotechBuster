@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import srl.neotech.dao.MovieDAO;
+import srl.neotech.dao.PersonDAO;
 import srl.neotech.entity.MovieCast;
 import srl.neotech.entity.MovieCastId;
 import srl.neotech.entity.MovieCrew;
@@ -29,7 +30,7 @@ public class MovieService {
 	@Autowired 
 	MovieDAO movieDAO;
 	
-
+   
 	
 	
 		public ArrayList<Movie> searchMovieByArrival (Date arrival_date){
@@ -64,6 +65,26 @@ public class MovieService {
 		}
 	
 		
+		public List<Movie>getMoviesFromPCompany(String companyName){
+			return movieDAO.getMoviesFromPCompany(companyName);
+		}
+		
+		public List<Movie>getMoviesFromSpecialOffer(Integer specialOffer){
+			return movieDAO.getMoviesFromSpecialOffer(specialOffer);
+		}
+		
+		public List<Movie>getMoviesFromLatestArrival(String dateArrived){
+			return movieDAO.getMoviesFromLatestArrival(dateArrived); 
+		}
+		
+		public List<Movie>getMoviesFromGenderUnspecified(String gender){
+			return movieDAO.getMoviesFromGenderUnspecified(gender);
+		}
+		
+		public List<Movie>getMoviesFromKeywordName(String keywordName){
+			return movieDAO.getMoviesFromKeywordName(keywordName);
+		}
+		
 		
 		
 		
@@ -83,7 +104,36 @@ public class MovieService {
 		}
 		
 		
-		
+		@Transactional
+		public void insertPerson(Integer person_id,String person_name) {
+			Person person=new Person();
+			person.setId(person_id);
+			person.setPersonName(person_name);
+			
+			
+			srl.neotech.entity.Movie movie=movieDAO.getMovieByiD(5); 
+			
+			
+			MovieCast cast=new MovieCast();
+			cast.setCharacterName("Char test");
+			
+			cast.setPerson(person);
+			cast.setMovie(movie);
+			
+			
+			MovieCastId castId=new MovieCastId();
+			castId.setPersonId(person.getId());
+			castId.setMovieId(movie.getId());
+			castId.setCastOrder(300);
+			cast.setId(castId);
+			
+			
+			person.setMovieCasts(Collections.singleton(cast));
+			movie.setMovieCasts(Collections.singleton(cast));
+			
+			movieDAO.insertPerson(person);
+			
+		}
 		
 		
 		
