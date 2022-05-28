@@ -53,7 +53,7 @@ public class Movie {
     @Column(name = "url_image", length = 200)
     private String urlImage;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "production_country",
             joinColumns = @JoinColumn(name = "movie_id"),
             inverseJoinColumns = @JoinColumn(name = "country_id"))
@@ -65,7 +65,7 @@ public class Movie {
     @OneToMany(mappedBy = "movie", cascade = {CascadeType.PERSIST})
     private Set<Bookmovie> bookmovies = new LinkedHashSet<>();
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "movie_genres",
             joinColumns = @JoinColumn(name = "movie_id"),
             inverseJoinColumns = @JoinColumn(name = "genre_id"))
@@ -77,12 +77,16 @@ public class Movie {
     @OneToMany(mappedBy = "movie", cascade = {CascadeType.PERSIST})
     private Set<MovieCast> movieCasts = new LinkedHashSet<>();
 
-   
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "movie_keywords",
+            joinColumns = @JoinColumn(name = "movie_id"),
+            inverseJoinColumns = @JoinColumn(name = "keyword_id"))
+    private Set<Keyword> keywords = new LinkedHashSet<>();
 
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "movie", cascade=CascadeType.PERSIST)
     private Stockmovie stockmovie;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "movie_company",
             joinColumns = @JoinColumn(name = "movie_id"),
             inverseJoinColumns = @JoinColumn(name = "company_id"))
@@ -90,7 +94,8 @@ public class Movie {
     
     //method hand implemented --->
     
-    @ManyToMany
+    
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "movie_languages",
               joinColumns = @JoinColumn (name ="movie_id"),
               inverseJoinColumns = @JoinColumn(name= "language_id"))

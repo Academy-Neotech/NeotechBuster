@@ -2,16 +2,13 @@ package srl.neotech.services;
 
 import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import java.util.concurrent.ThreadLocalRandom;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import srl.neotech.dao.MovieDAO;
@@ -89,7 +86,7 @@ public class MovieService {
 		
 		
 		public List<srl.neotech.model.Movie>getMoviesFromLanguageCode(String languageCode){
-			   List<srl.neotech.entity.Movie>movies=movieDAO.getMoviesFromLanguageCode(languageCode);
+			   Page<srl.neotech.entity.Movie>movies=movieDAO.getMoviesFromLanguageCode(languageCode);
 			   
 			   List<srl.neotech.model.Movie>listaFilm=new ArrayList<srl.neotech.model.Movie>();
 			   
@@ -183,4 +180,9 @@ public class MovieService {
 			movieDAO.deleteFilm(movie_id);
 		}
 		
-}
+//		public List<srl.neotech.entity.Movie> getMoviesByLanguage(String language){
+//			return movieDAO.searchMovieByLanguage(language);
+//		
+		
+		}		
+		

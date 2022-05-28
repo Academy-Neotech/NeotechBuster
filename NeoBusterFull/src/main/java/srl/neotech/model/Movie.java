@@ -187,34 +187,13 @@ public class Movie {
 
 
 	public Integer getQuantity() {
-		
-		Integer i=new Integer(quantity);
-		i.getClass().getName();
-		
-		if(i>5) {
-		String.format("Buona",i).getClass().getName();	
-	    }
-		if(i<=5) {
-			String.format("Scarsa",i).getClass().getName();	
-		    }
-		if(i==0) {
-			String.format("Non Disponibile",i).getClass().getName();	
-		    }
-		if(i==1) {
-			String.format("Ultimo Pezzo",i).getClass().getName();	
-		    }
-		
-		return i;
+        return this.quantity;
 	}
 
 
 
 
 	public void setQuantity(Integer quantity) {
-		
-		
-		
-		
 		this.quantity = quantity;
 	}
 

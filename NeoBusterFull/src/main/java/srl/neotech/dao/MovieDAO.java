@@ -2,16 +2,17 @@ package srl.neotech.dao;
 
 import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.transaction.Transactional;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
-import srl.neotech.entity.Language;
 import srl.neotech.entity.Movie;
 import srl.neotech.entity.MovieCrew;
 import srl.neotech.entity.Person;
@@ -37,7 +38,6 @@ public class MovieDAO {
 
 
 		public List<srl.neotech.model.Movie> searchMovieByArrival (Date arrival_date){
-
 		return movieRepository.searchMovieByArrival(arrival_date);
 
 		}
@@ -119,6 +119,10 @@ public class MovieDAO {
 		public List<srl.neotech.model.Movie>getMoviesFromGenderUnspecified(String gender){
 			List<Movie>movies=movieJPaRepository.getMoviesFromGenderUnspecified(gender);
 			
+		@Transactional
+		public Page<Movie>getMoviesFromLanguageCode(String languageCode){
+			Pageable pageableRequest = PageRequest.of(1,100);
+			return movieJPaRepository.getMoviesFromLanguageCode(languageCode,pageableRequest);
 			List<srl.neotech.model.Movie>listaFilm=new ArrayList<srl.neotech.model.Movie>();
 			
 			for(Movie movie:movies) {
@@ -173,8 +177,14 @@ public class MovieDAO {
 			
 		}
 		
-	
-}
+
+//		public List<Movie> searchMovieByLanguage(String language){
+//			List<Movie> entity=movieJPaRepository.getMoviesByLanguage(language);
+//			List<Movie> movie = GlobalMapper.INSTANCE.movieToLanguage(entity);
+//			return movie;
+		
+		}
+
 	
 	
 
