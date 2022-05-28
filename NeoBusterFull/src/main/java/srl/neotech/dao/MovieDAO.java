@@ -6,7 +6,6 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -119,19 +118,25 @@ public class MovieDAO {
 		public List<srl.neotech.model.Movie>getMoviesFromGenderUnspecified(String gender){
 			List<Movie>movies=movieJPaRepository.getMoviesFromGenderUnspecified(gender);
 			
-		@Transactional
-		public Page<Movie>getMoviesFromLanguageCode(String languageCode){
-			Pageable pageableRequest = PageRequest.of(1,100);
-			return movieJPaRepository.getMoviesFromLanguageCode(languageCode,pageableRequest);
 			List<srl.neotech.model.Movie>listaFilm=new ArrayList<srl.neotech.model.Movie>();
-			
 			for(Movie movie:movies) {
 				srl.neotech.model.Movie filmMappato=DozerMapper.getInstance().map(movie, srl.neotech.model.Movie.class); 
 				listaFilm.add(filmMappato);
 			}
-			return listaFilm;
-			
+			return listaFilm;	
 		}
+			
+		
+		
+		
+		@Transactional
+		public Page<Movie>getMoviesFromLanguageCode(String languageCode,Integer numPagina){
+		Pageable pageableRequest = PageRequest.of(numPagina,10);
+		return movieJPaRepository.getMoviesFromLanguageCode(languageCode,pageableRequest);
+		}
+		
+		
+		
 		
 		
 		public List<srl.neotech.model.Movie>getMoviesFromKeywordName(String keywordName){
@@ -152,9 +157,7 @@ public class MovieDAO {
 		
 		
 		
-		public List<Movie>getMoviesFromLanguageCode(String languageCode){
-			return movieJPaRepository.getMoviesFromLanguageCode(languageCode);
-		}
+		
 		
 		
 		
@@ -163,6 +166,7 @@ public class MovieDAO {
 			return personJPARepository.saveAndFlush(person);
 		}
 		
+		@SuppressWarnings("deprecation")
 		public Movie getMovieByiD(Integer movie_id ) {
 			return movieJPaRepository.getById(movie_id);  
 		}

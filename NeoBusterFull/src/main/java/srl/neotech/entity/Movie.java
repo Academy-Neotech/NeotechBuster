@@ -107,11 +107,7 @@ public class Movie {
 //    	       inverseJoinColumns = @JoinColumn(name="gender"))
 //    private Set<Gender>genders=new LinkedHashSet<>();
     
-    @ManyToMany
-    @JoinTable(name = "movie_keywords", 
-            joinColumns = @JoinColumn(name = "movie_id"),
-            inverseJoinColumns = @JoinColumn(name = "keyword_id"))
-    private Set<Keyword> keywords = new LinkedHashSet<>();
+   
     
     
     //end method <---

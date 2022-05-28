@@ -12,7 +12,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import srl.neotech.dao.MovieDAO;
-import srl.neotech.dao.PersonDAO;
 import srl.neotech.entity.MovieCast;
 import srl.neotech.entity.MovieCastId;
 import srl.neotech.entity.MovieCrew;
@@ -85,8 +84,8 @@ public class MovieService {
 		
 		
 		
-		public List<srl.neotech.model.Movie>getMoviesFromLanguageCode(String languageCode){
-			   Page<srl.neotech.entity.Movie>movies=movieDAO.getMoviesFromLanguageCode(languageCode);
+		public List<srl.neotech.model.Movie>getMoviesFromLanguageCode(String languageCode, Integer numPagina){
+			   Page<srl.neotech.entity.Movie>movies=movieDAO.getMoviesFromLanguageCode(languageCode, numPagina);
 			   
 			   List<srl.neotech.model.Movie>listaFilm=new ArrayList<srl.neotech.model.Movie>();
 			   
