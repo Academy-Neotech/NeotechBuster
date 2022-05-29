@@ -39,9 +39,7 @@ public class MovieService {
 		ArrayList<Movie>  listaInviataAlController = new  ArrayList<Movie>();
 		listaInviataAlController.addAll(listaTornataDalDDAO);
 		
-		return listaInviataAlController;
-		
-		
+		return listaInviataAlController;		
 }
 		
 		public ArrayList<Movie> searchMovieByOffer (){
@@ -93,7 +91,6 @@ public class MovieService {
 			   Page<srl.neotech.entity.Movie>movies=movieDAO.getMoviesFromLanguageCode(languageCode, numPagina);
 			   
 			List<srl.neotech.model.Movie>listaFilm=new ArrayList<srl.neotech.model.Movie>();
-			Page<srl.neotech.entity.Movie> movies;
 			
 			try {
 				  
