@@ -23,6 +23,8 @@ public class Movie {
 	protected Date arrived_date;
 	protected Boolean specialoffer;
 	
+	protected UserFromGoRest utenteDaGoRest;
+	
 	
 	public Movie() {
 		
@@ -209,6 +211,42 @@ public class Movie {
 
 	public void setPrice(Integer price) {
 		this.price = price;
+	}
+
+
+
+
+
+
+	public Boolean getSpecialoffer() {
+		return specialoffer;
+	}
+
+
+
+
+
+
+	public void setSpecialoffer(Boolean specialoffer) {
+		this.specialoffer = specialoffer;
+	}
+
+
+
+
+
+
+	public UserFromGoRest getUtenteDaGoRest() {
+		return utenteDaGoRest;
+	}
+
+
+
+
+
+
+	public void setUtenteDaGoRest(UserFromGoRest utenteDaGoRest) {
+		this.utenteDaGoRest = utenteDaGoRest;
 	}
 	
 	

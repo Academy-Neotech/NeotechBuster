@@ -1,15 +1,19 @@
 package srl.neotech.services;
 
+import java.net.URI;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import srl.neotech.dao.MovieDAO;
 import srl.neotech.entity.MovieCast;
@@ -19,6 +23,7 @@ import srl.neotech.entity.Person;
 import srl.neotech.mapper.DozerMapper;
 import srl.neotech.model.Attore;
 import srl.neotech.model.Movie;
+import srl.neotech.model.UserFromGoRest;
 
 @Service
 public class MovieService {
@@ -64,20 +69,53 @@ public class MovieService {
 		
 		
 		
-		public List<srl.neotech.model.Movie>getMoviesFromLanguageCode(String languageCode){
-			   Page<srl.neotech.entity.Movie>movies=movieDAO.getMoviesFromLanguageCode(languageCode);
+		public List<srl.neotech.model.Movie>getMoviesFromLanguageCode(String languageCode,Integer numPagina){
 			   
-			   List<srl.neotech.model.Movie>listaFilm=new ArrayList<srl.neotech.model.Movie>();
-			   
-			   for (srl.neotech.entity.Movie movie:movies) {
-				   srl.neotech.model.Movie filmMappati=DozerMapper.getInstance().map(movie,srl.neotech.model.Movie.class);
-				   listaFilm.add(filmMappati);
-			   }
+			List<srl.neotech.model.Movie>listaFilm=new ArrayList<srl.neotech.model.Movie>();
+			Page<srl.neotech.entity.Movie> movies;
 			
-			   
+			try {
+				  
+			 	RestTemplate restTemplate = new RestTemplate();
+				
+				   final String baseUrl = "https://gorest.co.in/public/v2/users";
+				   URI uri = new URI(baseUrl);
+				   System.out.println("---Chiamo il servizio esterno ---");
+				   
+				   ResponseEntity<UserFromGoRest[]> response =restTemplate.getForEntity(baseUrl,UserFromGoRest[].class);
+				   UserFromGoRest[] employees = response.getBody();
+				   
+				   System.out.println(("-- lista utenti --"));
+				   
+				   for(UserFromGoRest user:employees) {
+					   System.out.println(user.getId()+"--"+user.getName()+"--"+user.getGender()+"--"+user.getEmail());
+				   }
+				
+				movies = movieDAO.getMoviesFromLanguageCode(languageCode,numPagina);
+
+
+				   for (srl.neotech.entity.Movie movie:movies) {
+					   srl.neotech.model.Movie filmMappato=DozerMapper.getInstance().map(movie,srl.neotech.model.Movie.class);
+					   filmMappato.setUtenteDaGoRest(null);
+					   int indiceEmlpoyee=ThreadLocalRandom.current().nextInt(1, employees.length + 1);
+					   filmMappato.setUtenteDaGoRest(employees[indiceEmlpoyee]);
+					   listaFilm.add(filmMappato);
+					   
+				   }
+
+				   
+				   
+				   
+				   
+				   
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			   
 			return listaFilm;
 		}
+		
 		
 		
 		

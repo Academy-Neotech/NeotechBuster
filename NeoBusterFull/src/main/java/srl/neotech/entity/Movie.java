@@ -53,7 +53,7 @@ public class Movie {
     @Column(name = "url_image", length = 200)
     private String urlImage;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany
     @JoinTable(name = "production_country",
             joinColumns = @JoinColumn(name = "movie_id"),
             inverseJoinColumns = @JoinColumn(name = "country_id"))
@@ -65,7 +65,7 @@ public class Movie {
     @OneToMany(mappedBy = "movie", cascade = {CascadeType.PERSIST})
     private Set<Bookmovie> bookmovies = new LinkedHashSet<>();
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany
     @JoinTable(name = "movie_genres",
             joinColumns = @JoinColumn(name = "movie_id"),
             inverseJoinColumns = @JoinColumn(name = "genre_id"))
@@ -77,7 +77,7 @@ public class Movie {
     @OneToMany(mappedBy = "movie", cascade = {CascadeType.PERSIST})
     private Set<MovieCast> movieCasts = new LinkedHashSet<>();
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany
     @JoinTable(name = "movie_keywords",
             joinColumns = @JoinColumn(name = "movie_id"),
             inverseJoinColumns = @JoinColumn(name = "keyword_id"))
@@ -86,7 +86,7 @@ public class Movie {
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "movie", cascade=CascadeType.PERSIST)
     private Stockmovie stockmovie;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany
     @JoinTable(name = "movie_company",
             joinColumns = @JoinColumn(name = "movie_id"),
             inverseJoinColumns = @JoinColumn(name = "company_id"))
@@ -94,7 +94,7 @@ public class Movie {
     
     
     
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany
     @JoinTable(name = "movie_languages",
               joinColumns = @JoinColumn (name ="movie_id"),
               inverseJoinColumns = @JoinColumn(name= "language_id"))
@@ -271,9 +271,11 @@ public class Movie {
         this.keywords = keywords;
     }
 
+
     public Stockmovie getStockmovie() {
         return stockmovie;
     }
+    
 
     public void setStockmovie(Stockmovie stockmovie) {
         this.stockmovie = stockmovie;

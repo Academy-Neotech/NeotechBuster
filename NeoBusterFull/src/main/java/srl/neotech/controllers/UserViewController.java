@@ -37,10 +37,6 @@ public class UserViewController {
     return homePage;
 	}
 	
-	@RequestMapping(value="/error",method = RequestMethod.GET)
-	public String forbiddenPage(Model model, Principal principal) {
-		return "error";
-	}
 	
 	
 	@RequestMapping(value="/blank",method = RequestMethod.GET)

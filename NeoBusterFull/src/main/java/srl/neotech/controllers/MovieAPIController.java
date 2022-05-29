@@ -1,34 +1,48 @@
 package srl.neotech.controllers;
 
-import java.net.http.HttpResponse;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.ConstraintViolationException;
+import javax.validation.Valid;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 
-import org.apache.coyote.http11.HttpOutputBuffer;
+import org.hibernate.validator.constraints.Length;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import srl.neotech.entity.MovieCrew;
 import srl.neotech.model.Attore;
+import srl.neotech.model.ErrorMessage;
 import srl.neotech.model.Movie;
+import srl.neotech.requestresponse.GetMovieByLanguageRequest;
 import srl.neotech.requestresponse.ResponseBase;
 import srl.neotech.requestresponse.SearchMovieByArrivalResponse;
 import srl.neotech.requestresponse.SearchMovieByOfferResponse;
 import srl.neotech.services.MovieService;
 
 @RestController
+@Validated
 public class MovieAPIController {
 
 
@@ -139,38 +153,50 @@ public class MovieAPIController {
 	@ResponseBody 
 	@JsonBackReference
 	@GetMapping (value = "/api/getMoviesFromLanguageCode", produces=MediaType.APPLICATION_JSON_VALUE) 
-	public 	List<Movie> getMoviesFromLanguageCode(@RequestParam("language_code")String languageCode ){
-		
-		List<Movie>movieList=null;		
+	public 	ResponseBase getMoviesFromLanguageCode(@RequestParam("language_code")  @Length(min = 2,message="errore lunghezza minima non rispettata") String languageCode,@RequestParam("num_pagina") @Min(1) @Max(100) Integer numPagina) {
+	ResponseBase resp=new ResponseBase();
 		try {
-			movieList=movieService.getMoviesFromLanguageCode(languageCode);	
-		} catch (Exception e) {
-			e.printStackTrace();	
+			List<Movie>movieList=null;		
+			movieList=movieService.getMoviesFromLanguageCode(languageCode,numPagina);
+			resp.setSimpleData(movieList);
+		}catch(javax.validation.ConstraintViolationException e) {
+			resp.setDescr(e.getMessage());
+			resp.setCode("KO");
 		}
-	return movieList;
+		catch (Exception e) {
+			e.printStackTrace();
+			resp.setCode("KO");
+		}
+	return resp;
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	@ResponseBody 
+	@JsonBackReference
+	@PostMapping (value = "/api/getMoviesFromLanguageCode", produces=MediaType.APPLICATION_JSON_VALUE) 
+	public 	ResponseBase getMoviesFromLanguageCodePOST(@Valid @RequestBody GetMovieByLanguageRequest request) {
+		ResponseBase resp=new ResponseBase();
+		
+		try {
+			List<Movie>movieList=null;		
+			movieList=movieService.getMoviesFromLanguageCode(request.getLanguageCode(),request.getNumPagina());
+			resp.setSimpleData(movieList);
+		}catch(javax.validation.ConstraintViolationException e) {
+			resp.setDescr(e.getMessage());
+			resp.setCode("KO");
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			resp.setCode("KO");
+		}
+	return resp;
+	}
+
 	@ResponseBody 
 	@GetMapping (value = "/api/insertFilm", produces=MediaType.APPLICATION_JSON_VALUE) 
-	public ResponseBase insertFilm(@RequestParam("movie_id") Integer movie_id, @RequestParam("movie_title")String movie_title) {
+	public ResponseBase insertFilm(@RequestParam("movie_id")Integer movie_id, @RequestParam("movie_title")String movie_title, BindingResult errors) {
 		ResponseBase response=new ResponseBase();
-		  
+		
 		  try {
 			movieService.insertMovie(movie_id, movie_title);
 			response.setCode("OK");

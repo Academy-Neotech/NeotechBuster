@@ -3,6 +3,8 @@ package srl.neotech.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,8 +33,12 @@ public RegistrationResponse addRegistration (@RequestBody RegistrationRequest re
 			e.printStackTrace();
 		}
 		return response;
-	
-
 	}
+	
+	 @GetMapping("/exception")
+	    public ResponseEntity<Void> requestWithException() {
+	        throw new RuntimeException("Error in the faulty controller!");
+	    }
+	
 }
 

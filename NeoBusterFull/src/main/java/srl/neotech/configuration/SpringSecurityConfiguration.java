@@ -65,21 +65,21 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter{
         @Override
     	protected void configure(HttpSecurity http) throws Exception {
     		http  
-    		.csrf().disable()
-    		.authorizeRequests()
-    		.antMatchers("/static/**").permitAll()
-    		.antMatchers("/login").permitAll()
-    		.antMatchers("/api/**").permitAll()
-    		.antMatchers("/blank").permitAll()
-    		.antMatchers("/customer/**").hasAnyRole("CUSTOMER")
-			.antMatchers("/manager/**").hasAnyRole("MANAGER")
-			.anyRequest().authenticated()
-			.and()
-			.httpBasic()
-			.and()
-			.formLogin()
-		    .loginPage("/login")
-		    .defaultSuccessUrl("/perform_login");
+   		    .csrf().disable();
+//    		.authorizeRequests()
+//    		.antMatchers("/static/**").permitAll()
+//    		.antMatchers("/login").permitAll()
+//    		.antMatchers("/api/**").permitAll()
+//    		.antMatchers("/blank").permitAll()
+//    		.antMatchers("/customer/**").hasAnyRole("CUSTOMER")
+//			.antMatchers("/manager/**").hasAnyRole("MANAGER")
+//			.anyRequest().authenticated()
+//			.and()
+//			.httpBasic()
+//			.and()
+//			.formLogin()
+//		    .loginPage("/login")
+//		    .defaultSuccessUrl("/perform_login");
     	}
         
   

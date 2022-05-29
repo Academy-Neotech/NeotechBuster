@@ -79,8 +79,8 @@ SessionFactory sessionFactory;
    
 			
 		@Transactional
-		public Page<Movie>getMoviesFromLanguageCode(String languageCode){
-			Pageable pageableRequest = PageRequest.of(1,100);
+		public Page<Movie>getMoviesFromLanguageCode(String languageCode,Integer numPagina){
+			Pageable pageableRequest = PageRequest.of(numPagina,10);
 			return movieJPaRepository.getMoviesFromLanguageCode(languageCode,pageableRequest);
 		}
 		
