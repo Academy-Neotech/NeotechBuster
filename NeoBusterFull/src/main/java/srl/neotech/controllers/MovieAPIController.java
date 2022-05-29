@@ -13,7 +13,6 @@ import javax.validation.constraints.Min;
 
 import org.hibernate.validator.constraints.Length;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
@@ -149,6 +148,29 @@ public class MovieAPIController {
 	return response;	
 	}
 	
+	/*TODO  in JPAHibernate
+	 * 
+	 *    getMoviesFromLanguageCode  V
+	 *    
+	 *    getMoviesFromProductionCompany   V
+	 *    
+	 *    getMoviesSpecialOffer         V
+	 *    
+	 *    getMoviesLatestArrival        V
+	 *    
+	 *    getMovieswithGenderUnspecified    V
+	 *    
+	 *    getMoviesFromKeywordName      V
+	 *    
+	 *   
+	 *   insert e update
+	 *   
+	 *   
+	 */
+	
+	
+	
+	
 	
 	@ResponseBody 
 	@JsonBackReference
@@ -169,6 +191,93 @@ public class MovieAPIController {
 		}
 	return resp;
 	}
+	
+	@ResponseBody 
+	@GetMapping (value = "/api/getMoviesFromLatestArrival", produces=MediaType.APPLICATION_JSON_VALUE) 
+	public ResponseBase getMoviesFromLatestArrival(@RequestParam("specialOffer")String dataArrived) {
+		ResponseBase reBase=new ResponseBase();
+	
+		try {
+			List<Movie>movieList=movieService.getMoviesFromLatestArrival(dataArrived);
+			reBase.setSimpleData(movieList);
+			reBase.setCode("OK");
+		} catch (Exception e) {
+			reBase.setCode("KO");
+			reBase.setDescr(e.getMessage());
+			e.printStackTrace();
+		}
+		
+		
+	
+	return reBase; 
+	}
+	
+	
+	@ResponseBody 
+	@GetMapping (value = "/api/getMoviesFromGenderUnspecifed", produces=MediaType.APPLICATION_JSON_VALUE) 
+	public ResponseBase getMoviesFromGenderUnspecifed(@RequestParam("Unspecifed")String gender) {
+		ResponseBase reBase=new ResponseBase();
+	
+	try {
+		List<Movie>movieList=movieService.getMoviesFromGenderUnspecified(gender);
+		reBase.setSimpleData(movieList);
+		reBase.setCode("OK");
+	} catch (Exception e) {
+		reBase.setCode("KO");
+		reBase.setDescr(e.getMessage());
+		e.printStackTrace();
+	}
+		
+	return reBase;	
+	
+	}
+	
+	
+
+	@ResponseBody 
+	@GetMapping (value = "/api/getMoviesFromKeywordName", produces=MediaType.APPLICATION_JSON_VALUE) 
+	public ResponseBase getMoviesFromKeywordName(@RequestParam("keywordName")String keywordName) {
+		ResponseBase reBase=new ResponseBase();
+	
+	
+		try {
+			List<Movie>movieList=movieService.getMoviesFromKeywordName(keywordName);
+			reBase.setSimpleData(movieList);
+			reBase.setCode("OK");
+		} catch (Exception e) {
+			reBase.setCode("KO");
+			reBase.setDescr(e.getMessage());
+			e.printStackTrace();
+		}
+		
+		
+	return reBase;
+	}
+	
+	@ResponseBody
+	@GetMapping (value = "/api/insertPerson", produces=MediaType.APPLICATION_JSON_VALUE) 
+	public ResponseBase insertPerson(@RequestParam("person_id")Integer person_id,@RequestParam("person_name") String person_name) {
+		ResponseBase base=new ResponseBase();
+		
+		try {
+			movieService.insertPerson(person_id, person_name);
+			base.setCode("OK");
+		} catch (Exception e) {
+			base.setCode("KO");
+			base.setDescr(e.getMessage());
+			e.printStackTrace();
+		}
+		
+		return base;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	@ResponseBody 
@@ -228,28 +337,6 @@ public class MovieAPIController {
 	}
 	
 	
-	
-//	@ResponseBody 
-//	@GetMapping (value = "/api/getMovieByLanguage/{language}", produces=MediaType.APPLICATION_JSON_VALUE) 
-//	//--------------------------------------------------------------------Aggiungere se errore do OutpuStream
-//	
-//	public List<Movie> getMoviesByLanguage(@PathVariable("language") String language, HttpServletResponse response) {
-//
-//	List<srl.neotech.entity.Movie> m=null;
-//	try {
-//		m = movieService.getMoviesByLanguage(language);
-//		//Aggiungere se errore do OutpuStream
-//		response.getOutputStream().write(null, 0, response.getBufferSize());
-//		
-//	} catch (Exception e) {
-//		// TODO Auto-generated catch block
-//		e.printStackTrace();
-//	}	
-//	
-//    return m;
-//		
-	}
-	
 	/*TODO  in JPAHibernate
 	 * 
 	 *    getMoviesFromLanguageCode
@@ -267,6 +354,7 @@ public class MovieAPIController {
 	 *   
 	 *    
 	 */
+}
 
 
 

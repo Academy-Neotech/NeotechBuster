@@ -6,7 +6,6 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -20,6 +19,7 @@ import srl.neotech.mapper.DozerMapper;
 import srl.neotech.model.Attore;
 import srl.neotech.repository.MovieJPARepository;
 import srl.neotech.repository.MovieRepository;
+import srl.neotech.repository.PersonJPARepository;
 
 
 
@@ -32,10 +32,8 @@ public class MovieDAO {
 	@Autowired
 	MovieJPARepository  movieJPaRepository;
 
-	
-	
-@Autowired
-SessionFactory sessionFactory;
+	@Autowired
+    PersonJPARepository personJPARepository;
 
 
 		public List<srl.neotech.model.Movie> searchMovieByArrival (Date arrival_date){
@@ -76,8 +74,61 @@ SessionFactory sessionFactory;
 			return listaAttori;
 		}
 		
-   
+		
+		public List<srl.neotech.model.Movie>getMoviesFromPCompany(String companyName){
+			List<Movie>movies=movieJPaRepository.getMoviesFromPCompany(companyName);
 			
+			List<srl.neotech.model.Movie>listaFilm=new ArrayList<srl.neotech.model.Movie>();
+			
+			for(Movie movie:movies) {
+				srl.neotech.model.Movie filmMappato=DozerMapper.getInstance().map(movie,srl.neotech.model.Movie.class);
+				listaFilm.add(filmMappato);
+						}
+			
+			return listaFilm;
+		}
+		
+		
+		
+	   public List<srl.neotech.model.Movie>getMoviesFromSpecialOffer(Integer specialOffer){
+		   List<Movie>movies=movieJPaRepository.getMoviesFromSpecialOffer(specialOffer);
+		   
+		   List<srl.neotech.model.Movie>listaFilm=new ArrayList<srl.neotech.model.Movie>();
+		   
+		  for(Movie movie:movies) {
+			  srl.neotech.model.Movie filmMappato=DozerMapper.getInstance().map(movie,srl.neotech.model.Movie.class);
+			  listaFilm.add(filmMappato);
+		  }
+		  return listaFilm;
+	   }
+		
+	   public List<srl.neotech.model.Movie>getMoviesFromLatestArrival(String dateArrived){
+		   List<Movie>movies=movieJPaRepository.getMoviesFromLatestArrival(dateArrived);
+		   
+		   List<srl.neotech.model.Movie>listaFilm=new ArrayList<srl.neotech.model.Movie>();
+		   
+		   for(Movie movie:movies) {
+			   srl.neotech.model.Movie filmMappato=DozerMapper.getInstance().map(movie,srl.neotech.model.Movie.class);
+			   listaFilm.add(filmMappato);
+		   }
+		   
+		   return listaFilm;
+		   
+	   }
+		public List<srl.neotech.model.Movie>getMoviesFromGenderUnspecified(String gender){
+			List<Movie>movies=movieJPaRepository.getMoviesFromGenderUnspecified(gender);
+			
+			List<srl.neotech.model.Movie>listaFilm=new ArrayList<srl.neotech.model.Movie>();
+			for(Movie movie:movies) {
+				srl.neotech.model.Movie filmMappato=DozerMapper.getInstance().map(movie, srl.neotech.model.Movie.class); 
+				listaFilm.add(filmMappato);
+			}
+			return listaFilm;	
+		}
+			
+		
+		
+		
 		@Transactional
 		public Page<Movie>getMoviesFromLanguageCode(String languageCode,Integer numPagina){
 			Pageable pageableRequest = PageRequest.of(numPagina,10);
@@ -85,15 +136,48 @@ SessionFactory sessionFactory;
 		}
 		
 		
-
+		
+		
+		
+		public List<srl.neotech.model.Movie>getMoviesFromKeywordName(String keywordName){
+			List<Movie>movies=movieJPaRepository.getMoviesFromKeywordName(keywordName);
+			
+            List<srl.neotech.model.Movie>listaFilm=new ArrayList<srl.neotech.model.Movie>();
+			
+			for(Movie movie:movies) {
+				srl.neotech.model.Movie filmMappato=DozerMapper.getInstance().map(movie, srl.neotech.model.Movie.class); 
+				listaFilm.add(filmMappato);
+			}
+			return listaFilm;
+			
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		public Person insertPerson(Person person) {
+			return personJPARepository.saveAndFlush(person);
+		}
+		
+		@SuppressWarnings("deprecation")
+		public Movie getMovieByiD(Integer movie_id ) {
+			return movieJPaRepository.getById(movie_id);  
+		}
+		
+		
 		public Movie insertMovie(Movie movie) {
 			return movieJPaRepository.saveAndFlush(movie);
 		}
 		
 		
 		public void deleteFilm(Integer movieId) {
-			
-		  	
 			
 		}
 		

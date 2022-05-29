@@ -31,7 +31,7 @@ public class MovieService {
 	@Autowired 
 	MovieDAO movieDAO;
 	
-
+   
 	
 	
 		public ArrayList<Movie> searchMovieByArrival (Date arrival_date){
@@ -66,10 +66,31 @@ public class MovieService {
 		}
 	
 		
+		public List<Movie>getMoviesFromPCompany(String companyName){
+			return movieDAO.getMoviesFromPCompany(companyName);
+		}
+		
+		public List<Movie>getMoviesFromSpecialOffer(Integer specialOffer){
+			return movieDAO.getMoviesFromSpecialOffer(specialOffer);
+		}
+		
+		public List<Movie>getMoviesFromLatestArrival(String dateArrived){
+			return movieDAO.getMoviesFromLatestArrival(dateArrived); 
+		}
+		
+		public List<Movie>getMoviesFromGenderUnspecified(String gender){
+			return movieDAO.getMoviesFromGenderUnspecified(gender);
+		}
+		
+		public List<Movie>getMoviesFromKeywordName(String keywordName){
+			return movieDAO.getMoviesFromKeywordName(keywordName);
+		}
 		
 		
 		
-		public List<srl.neotech.model.Movie>getMoviesFromLanguageCode(String languageCode,Integer numPagina){
+		
+		public List<srl.neotech.model.Movie>getMoviesFromLanguageCode(String languageCode, Integer numPagina){
+			   Page<srl.neotech.entity.Movie>movies=movieDAO.getMoviesFromLanguageCode(languageCode, numPagina);
 			   
 			List<srl.neotech.model.Movie>listaFilm=new ArrayList<srl.neotech.model.Movie>();
 			Page<srl.neotech.entity.Movie> movies;
@@ -117,8 +138,36 @@ public class MovieService {
 		}
 		
 		
-		
-		
+		@Transactional
+		public void insertPerson(Integer person_id,String person_name) {
+			Person person=new Person();
+			person.setId(person_id);
+			person.setPersonName(person_name);
+			
+			
+			srl.neotech.entity.Movie movie=movieDAO.getMovieByiD(5); 
+			
+			
+			MovieCast cast=new MovieCast();
+			cast.setCharacterName("Char test");
+			
+			cast.setPerson(person);
+			cast.setMovie(movie);
+			
+			
+			MovieCastId castId=new MovieCastId();
+			castId.setPersonId(person.getId());
+			castId.setMovieId(movie.getId());
+			castId.setCastOrder(300);
+			cast.setId(castId);
+			
+			
+			person.setMovieCasts(Collections.singleton(cast));
+			movie.setMovieCasts(Collections.singleton(cast));
+			
+			movieDAO.insertPerson(person);
+			
+		}
 		
 		
 		

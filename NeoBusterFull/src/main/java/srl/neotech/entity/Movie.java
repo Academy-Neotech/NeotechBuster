@@ -92,16 +92,25 @@ public class Movie {
             inverseJoinColumns = @JoinColumn(name = "company_id"))
     private Set<ProductionCompany> productionCompanies = new LinkedHashSet<>();
     
+    //method hand implemented --->
     
     
     @ManyToMany
     @JoinTable(name = "movie_languages",
               joinColumns = @JoinColumn (name ="movie_id"),
               inverseJoinColumns = @JoinColumn(name= "language_id"))
-    private Set<Language>language=new LinkedHashSet<>(); 
+    private Set<Language>languages=new LinkedHashSet<>(); 
 
+//    @ManyToMany
+//    @JoinTable(name = "movie_cast",
+//    	       joinColumns = @JoinColumn (name ="movie_id"), 
+//    	       inverseJoinColumns = @JoinColumn(name="gender"))
+//    private Set<Gender>genders=new LinkedHashSet<>();
+    
+   
     
     
+    //end method <---
     
     public Integer getId() {
         return id;

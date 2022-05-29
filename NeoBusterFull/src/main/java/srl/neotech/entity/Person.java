@@ -1,8 +1,17 @@
 package srl.neotech.entity;
 
-import javax.persistence.*;
 import java.util.LinkedHashSet;
 import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 @Entity
 @Table(name = "person")
@@ -18,6 +27,7 @@ public class Person {
     private Set<MovieCrew> movieCrews = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "person", cascade = {CascadeType.PERSIST})
+    @NotFound(action = NotFoundAction.IGNORE)
     private Set<MovieCast> movieCasts = new LinkedHashSet<>();
 
     public Integer getId() {

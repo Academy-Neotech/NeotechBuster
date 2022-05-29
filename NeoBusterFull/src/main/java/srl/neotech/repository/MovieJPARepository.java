@@ -33,4 +33,23 @@ public interface MovieJPARepository extends JpaRepository<Movie, Integer>{
 	@Query("select m from Movie m join m.movieLanguages ml where ml.language.languageCode= :language_code")
 	public Page<Movie> getMoviesFromLanguageCode(@Param ("language_code")String languageCode, Pageable pageable);
 	
+	
+	@Query("select m from Movie m join m.productionCompanies pc where pc.companyName= :companyName")
+	public List<Movie>getMoviesFromPCompany(@Param("companyName") String companyName);
+	
+	@Query("select m from Movie m join m.stockmovie sm where sm.specialoffer= :specialOffer")
+	public List<Movie>getMoviesFromSpecialOffer(@Param("specialOffer")Integer specialoffer);
+	
+	@Query("select m from Movie m join m.stockmovie sm where sm.dateArrived= :date_arrived")
+	public List<Movie>getMoviesFromLatestArrival(@Param("date_arrived")String dateArrived);
+	
+	@Query("select m from Movie m join m.movieCasts mc where mc.gender.gender= :Unspecifed")
+	public List<Movie>getMoviesFromGenderUnspecified(@Param("Unspecifed")String gender);
+	
+	@Query("select m from Movie m join m.keywords k where k.keywordName= :keywordName")
+	public List<Movie>getMoviesFromKeywordName(@Param("keywordName")String keywordName);
+	
+    
+	
+	
 }
